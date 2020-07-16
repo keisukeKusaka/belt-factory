@@ -1,0 +1,15 @@
+.side-bar{
+  &__login-form{
+    background-color: orange;
+    width: 260px;
+    margin: 10px 20px;
+    border: black 2px solid;
+    padding: 10px 10px;
+    .form{
+      margin-bottom: 5px;
+    }
+    .login-btn{
+      float: right;
+    }
+  }
+}

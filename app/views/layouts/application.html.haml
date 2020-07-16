@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title BeltFactory
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    %script { src: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" }
+    %script { src: "../app/assets/javascripts/application.js" }
+  %body
+    = yield

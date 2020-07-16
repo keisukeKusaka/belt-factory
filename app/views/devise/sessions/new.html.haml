@@ -1,0 +1,16 @@
+.wrapper
+  .side-bar
+    = form_with(model: @user, url: user_session_path, local: true) do |form|
+      .side-bar__login-form.clearfix
+        .form
+          社員番号
+          .form__input
+            = form.text_field :employee_number, autofocus: true
+        .form
+          パスワード
+          .form__input
+            = form.password_field :password, autocomplete: "off"
+        .login-btn
+          = form.submit "ログイン"
+
+  .main-content
