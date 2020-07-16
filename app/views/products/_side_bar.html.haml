@@ -6,9 +6,9 @@
         製品番号
         = form.text_field :number, class: "search__input"
         = form.submit "検索", class: "search__btn"
-    = link_to "製品を新規登録",class: 'new_product-btn'
-    -# - if current_user.department_id == 2
-    -#   = link_to "製品を新規登録", new_product_path, class: 'new_product-btn'
+    - if current_user.department_id == 2
+      = link_to "製品を新規登録", class: 'new_product-btn'
+      -# = link_to "製品を新規登録", new_product_path, class: 'new_product-btn'
 
   .side-bar__product-design
     .info
@@ -46,7 +46,5 @@
   .side-bar__user-name.clearfix
     .info
       .info__output
-        仮入力
-        -# = current_user.name
-      = link_to "ログアウト", class: 'info__logout'
-      -# = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'info__logout'
+        = current_user.name
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'info__logout'
