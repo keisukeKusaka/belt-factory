@@ -3,10 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :validatable
-         validates :name, presence: true
-         validates :employee_number, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates :number, presence: true, uniqueness: true
 
-  # belongs_to :department
+  belongs_to :department
 
   def email_required?
     false
