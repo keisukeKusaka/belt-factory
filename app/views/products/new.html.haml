@@ -1,0 +1,30 @@
+.wrapper
+  = render "side_bar"
+  .main-content
+    .main-content__new-product
+      新規登録
+      = form_with(model: @product) do |form|
+        .form
+          .info
+            製品番号
+            = form.text_field :product_product_number_design_datum, class: "info__input", id: "number"
+          .info
+            社名
+            = form.text_field :product_client_campany_design_datum, class: "info__input", id: "campany"
+          %button{ type: "button", class: "autfill-btn" }
+            前回品と同設計で入力
+          .info
+            材質
+            = form.text_field :product_material_name_design_datum, class: "info__input"
+          .info-size.clearfix
+            設計寸法
+            .info-size__size
+              = form.text_field :product_length_design_datum, class: "input"
+              m ✖️
+              = form.text_field :product_width_design_datum, class: "input"
+              cm
+            .info-size__weight
+              仮入力
+              -# = #次の計算結果→length * width * material.basis-weight
+              kg
+          = form.submit "登録", class: "submit-btn"

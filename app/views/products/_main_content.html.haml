@@ -1,0 +1,70 @@
+.main-content
+  .main-content__contents
+    .menu
+      #manufacturing.menu__tab.active
+        製造情報
+      #sales.menu__tab
+        営業情報
+
+    .contents
+      .contents__manufacturing.content.show
+        -# .content__production.block
+        .block
+          .title
+            製作工程
+          -# ↓データの有無、所属部署を確認する設定を追記する事（データ未作成かつ所属部署が一致した場合のみ記入可）
+          - if true
+            .comment-area
+              = render partial: "comment"
+          - else
+            -# ↓機能実装時に確定ルーティングを設定する事
+            = form_with(model: @production) do |form|
+              .comment-area
+                = render partial: "form", locals: { form: form }
+        .block
+          .title
+            検査工程
+          -# ↓データの有無、所属部署を確認する設定を追記する事（データ未作成かつ所属部署が一致した場合のみ記入可）
+          - if false
+            .comment-area
+              .comment-area__size-area
+                実寸法：
+                .size-output
+                  仮入力
+                  -# = product.inspection.length
+                m ✖️
+                .size-output
+                  仮入力
+                  -# = product.inspection.width
+                cm　
+                .size-output
+                  仮入力
+                  -# = product.inspection.weight
+                kg
+              = render partial: "comment"
+          - else
+            -# ↓機能実装時に確定ルーティングを設定する事
+            = form_with(model: @inspection) do |form|
+              .comment-area
+                .comment-area__size-area
+                  実寸法：
+                  = form.text_field :length, class: "size-input", placeholder: "周長"
+                  m ✖️
+                  = form.text_field :width, class: "size-input", placeholder: "横幅"
+                  cm　
+                  = form.text_field :weight, class: "size-input", placeholder: "重量"
+                  kg
+                = render partial: "form", locals: { form: form }
+      .contents__sales.content
+        .block
+          .title
+            顧客評価
+          -# ↓データの有無、所属部署を確認する設定を追記する事（データ未作成かつ所属部署が一致した場合のみ記入可）
+          - if true
+            .comment-area
+              = render partial: "comment"
+          - else
+            -# ↓機能実装時に確定ルーティングを設定する事
+            = form_with(model: @evalution) do |form|
+              .comment-area
+                = render partial: "form", locals: { form: form }
