@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :number, presence: true, uniqueness: true
 
   belongs_to :department
+  has_many :products
 
   def email_required?
     false
