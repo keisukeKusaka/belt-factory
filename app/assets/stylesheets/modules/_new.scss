@@ -1,0 +1,31 @@
+.main-content{
+  &__new-product{
+    background-color: lightsalmon;
+    width: 500px;
+    margin: 10px 20px;
+    border: black 2px solid;
+    padding: 10px 10px;
+    .info{
+      justify-content: space-between;
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .info-size{
+      &__size{
+        justify-content: space-between;
+        display: flex;
+        margin-bottom: 10px;
+      }
+      &__weight{
+        display: flex;
+        float: right;
+      }
+      .output{
+        background-color: white;
+        border: black 1px solid;
+        width: 80px;
+        text-align: right;
+      }
+    }
+  }
+}
