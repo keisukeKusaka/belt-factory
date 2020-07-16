@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_162712) do
+ActiveRecord::Schema.define(version: 2020_07_16_163808) do
 
   create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "campany", null: false
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(version: 2020_07_16_162712) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_departments_on_name"
+  end
+
+  create_table "inspection_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.float "length", null: false
+    t.integer "width", null: false
+    t.float "weight", null: false
+    t.text "comment", null: false
+    t.string "image"
+    t.bigint "product_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_inspection_data_on_product_id"
+    t.index ["user_id"], name: "index_inspection_data_on_user_id"
   end
 
   create_table "materials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -75,6 +89,8 @@ ActiveRecord::Schema.define(version: 2020_07_16_162712) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "inspection_data", "products"
+  add_foreign_key "inspection_data", "users"
   add_foreign_key "production_data", "products"
   add_foreign_key "production_data", "users"
   add_foreign_key "products", "clients"
