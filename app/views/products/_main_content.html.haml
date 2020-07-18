@@ -18,7 +18,7 @@
               = render partial: "comment"
           - else
             -# ↓機能実装時に確定ルーティングを設定する事
-            = form_with(model: @production) do |form|
+            = form_with(model: @production, local: true) do |form|
               .comment-area
                 = render partial: "form", locals: { form: form }
         .block
@@ -44,7 +44,7 @@
               = render partial: "comment"
           - else
             -# ↓機能実装時に確定ルーティングを設定する事
-            = form_with(model: @inspection) do |form|
+            = form_with(model: @inspection, local: true) do |form|
               .comment-area
                 .comment-area__size-area
                   実寸法：
@@ -65,6 +65,6 @@
               = render partial: "comment"
           - else
             -# ↓機能実装時に確定ルーティングを設定する事
-            = form_with(model: @evalution) do |form|
+            = form_with(model: @evalution, local: true) do |form|
               .comment-area
                 = render partial: "form", locals: { form: form }
