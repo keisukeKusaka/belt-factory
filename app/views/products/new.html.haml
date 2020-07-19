@@ -1,32 +1,7 @@
 .wrapper
-  = render "side_bar"
-  .main-content
-    .main-content__new-product
-      新規登録
-      = form_with(model: @product, local: true) do |form|
-        .form
-          .info
-            製品番号
-            = form.text_field :number, class: "info__input", readonly: "readonly", id: "number", value: @new_id
-          .info
-            発注先
-            = form.select :client_id, options_for_select(@client.map{|client|[client[:campany], client[:id], {}]}, ""), {}, {class: "info__input", id: "campany"}
+  .side-bar
+    = render "search-form"
+    = render "user-name"
 
-          %button{ type: "button", class: "autfill-btn" }
-            前回品と同設計で入力
-          .info
-            材質
-            = form.select :material_id, options_for_select(@material.map{|material|[material[:name], material[:id], {}]}, ""), {}, {class: "info__input"}
-          .info-size.clearfix
-            設計寸法
-            .info-size__size
-              = form.text_field :length, class: "input"
-              m ✖️
-              = form.text_field :width, class: "input"
-              cm
-            .info-size__weight
-              仮入力
-              -# = #次の計算結果→length * width * material.basis-weight
-              kg
-          = form.submit "登録", class: "submit-btn"
-      = link_to "ホームへ戻る", root_path, class: "root-path"
+  .main-content
+    = render "new-product"

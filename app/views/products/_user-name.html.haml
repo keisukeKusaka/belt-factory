@@ -1,0 +1,5 @@
+.side-bar__user-name.clearfix
+  .info
+    .info__output
+      = current_user.name
+    = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'info__logout'
