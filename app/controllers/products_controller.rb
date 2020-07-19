@@ -23,6 +23,19 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    product = Product.find_by(number: params[:number])
+    unless product.blank?
+      @product_number = product.number
+      @product_campany = product.client.campany
+      @product_material = product.material.name
+      @product_length = product.length
+      @product_width = product.width
+      @product_weight = (product.length * product.width * product.material.basis_weight / 100).round(1)
+      @product_pro_comment = product.production_datum.comment
+    end
+  end
+
   private
   def product_params
     params.require(:product).permit(:number, :length, :width, :client_id, :material_id).merge(user_id: current_user.id)
