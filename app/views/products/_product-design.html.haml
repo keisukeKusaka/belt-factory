@@ -1,0 +1,20 @@
+.side-bar__product-design
+  .info
+    製品番号
+    %input.info__output{value: "#{@product_number}", readonly: "readonly"}
+  .info
+    社名
+    %input.info__output{value: "#{@product_campany}", readonly: "readonly"}
+  .info
+    材質
+    %input.info__output{value: "#{@product_material}", readonly: "readonly"}
+  .info-size.clearfix
+    設計寸法
+    .info-size__size
+      %input.output{value: "#{@product_length}", readonly: "readonly"}
+      m ✖️
+      %input.output{value: "#{@product_width}", readonly: "readonly"}
+      cm
+    .info-size__weight
+      %input.output{value: "#{@product_weight}", readonly: "readonly"}
+      kg

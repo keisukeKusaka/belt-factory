@@ -9,178 +9,178 @@ a {
 .wrapper{
   font-size: 18px;
   display: flex;
-    .side-bar {
-      overflow: scroll;
-      background-color: gray;
-      width: 300px;
-      height: 100vh;
-      &__product-number {
-        background-color: orange;
-        width: 260px;
-        margin: 10px 20px;
-        border: black 2px solid;
-        padding: 10px 10px;
-        .search{
-          &__input {
-            width: 150px;
-          }
-          &__btn{
-            float: right;
-          }
-        }
-      }
-      &__product-design {
-        background-color: lightsalmon;
-        width: 260px;
-        margin: 10px 20px;
-        border: black 2px solid;
-        padding: 10px 10px;
-        .info{
-          justify-content: space-between;
-          display: flex;
-          margin-bottom: 10px;
-          &__output{
-            background-color: white;
-            border: black 1px solid;
-            width: 150px;
-            text-align: center;
-          }
-        }
-        .info-size{
-          &__size{
-            justify-content: space-between;
-            display: flex;
-            margin-bottom: 10px;
-          }
-          &__weight{
-            display: flex;
-            float: right;
-          }
-          .output{
-            background-color: white;
-            border: black 1px solid;
-            width: 80px;
-            text-align: right;
-          }
-        }
+}
 
+.side-bar {
+  overflow: scroll;
+  background-color: gray;
+  width: 300px;
+  height: 100vh;
+  &__search-form {
+    background-color: orange;
+    width: 260px;
+    margin: 10px 20px;
+    border: black 2px solid;
+    padding: 10px 10px;
+    .search{
+      &__input {
+        width: 150px;
       }
-      &__user-name{
-        background-color: orange;
-        width: 260px;
-        margin: 10px 20px;
-        border: black 2px solid;
-        padding: 10px 10px;
-        .info{
-          float: right;
-        }
+      &__btn{
+        float: right;
       }
     }
-
-    .main-content {
-      background-color: lightgrey;
-      width: calc(100% - 300px);
-      height: 100vh;
-
-      &__contents{
-        margin: 10px;
-        width: calc(100% - 20px);
-        height: calc(100% - 20px);
-      }
-      .menu{
-        display: flex;
-        height: 40px;
-        line-height: 40px;
-        &__tab{
-          width: 50%;
-          border: black 2px solid;
-          text-align: center;
-        }
-        .active{
-          color: black;
-        }
-        :not(.active){
-          color: grey;
-        }
-        #manufacturing{
-          background-color: yellowgreen;
-        }
-        #sales{
-          background-color: pink;
-        }
-
-      }
-
-      .contents{
-        border: black 2px solid;
-        width: 100%;
-        // height: calc(100% - 40px);
-
-        &__manufacturing{
-          background-color: yellowgreen;
-        }
-        &__sales{
-          background-color: pink;
-          height: 100%;
-          padding: 10px;
-        }
-
-        .content.show{
-          display: block;
-          overflow: scroll;
-          height: 100%;
-          padding: 10px;
-        }
-        .content{
-          display: none;
-        }
-      }
-    }
-
-    .block{
-      width: 100%;
+  }
+  &__product-design {
+    background-color: lightsalmon;
+    width: 260px;
+    margin: 10px 20px;
+    border: black 2px solid;
+    padding: 10px 10px;
+    .info{
+      justify-content: space-between;
+      display: flex;
       margin-bottom: 10px;
-      .title{
-        background-color: orange;
-        width: 120px;
-        line-height: 30px;
-        text-align: center;
+      &__output{
+        background-color: white;
         border: black 1px solid;
-        margin-bottom: 5px;
+        width: 150px;
+        text-align: center;
       }
-      .comment-area{
-        &__size-area{
-          margin-bottom: 5px;
-          display: flex;
-          .size-input{
-            width: 100px;
-            text-align: right;
-          }
-          .size-output{
-            background-color: white;
-            border: black 1px solid;
-            width: 100px;
-            text-align: right;
-          }
-        }
-        &__main-area{
-          width: 100%;
-          height: 150px;
-          background-color: white;
-          border: black 1px solid;
-          margin-bottom: 5px;
-          overflow: scroll;
-        }
-        &__sub-area{
-          display: flex;
-          .output{
-            background-color: white;
-            border: black 1px solid;
-            width: 150px;
-            text-align: center;
-          }
-        }
+    }
+    .info-size{
+      &__size{
+        justify-content: space-between;
+        display: flex;
+        margin-bottom: 10px;
+      }
+      &__weight{
+        display: flex;
+        float: right;
+      }
+      .output{
+        background-color: white;
+        border: black 1px solid;
+        width: 80px;
+        text-align: right;
       }
     }
 
+  }
+  &__user-name{
+    background-color: orange;
+    width: 260px;
+    margin: 10px 20px;
+    border: black 2px solid;
+    padding: 10px 10px;
+    .info{
+      float: right;
+    }
+  }
+}
+
+.main-content {
+  background-color: lightgrey;
+  width: calc(100% - 300px);
+  height: 100vh;
+
+  &__product-data{
+    margin: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+  }
+  .menu{
+    display: flex;
+    height: 40px;
+    line-height: 40px;
+    &__tab{
+      width: 50%;
+      border: black 2px solid;
+      text-align: center;
+    }
+    .active{
+      color: black;
+    }
+    :not(.active){
+      color: grey;
+    }
+    #manufacturing{
+      background-color: yellowgreen;
+    }
+    #sales{
+      background-color: pink;
+    }
+
+  }
+
+  .contents{
+    border: black 2px solid;
+    width: 100%;
+    // height: calc(100% - 40px);
+
+    &__manufacturing{
+      background-color: yellowgreen;
+    }
+    &__sales{
+      background-color: pink;
+      height: 100%;
+      padding: 10px;
+    }
+
+    .content.show{
+      display: block;
+      overflow: scroll;
+      height: 100%;
+      padding: 10px;
+    }
+    .content{
+      display: none;
+    }
+  }
+}
+
+.block{
+  width: 100%;
+  margin-bottom: 10px;
+  .title{
+    background-color: orange;
+    width: 120px;
+    line-height: 30px;
+    text-align: center;
+    border: black 1px solid;
+    margin-bottom: 5px;
+  }
+  .comment-area{
+    &__size-area{
+      margin-bottom: 5px;
+      display: flex;
+      .size-input{
+        width: 100px;
+        text-align: right;
+      }
+      .size-output{
+        background-color: white;
+        border: black 1px solid;
+        width: 100px;
+        text-align: right;
+      }
+    }
+    &__main-area{
+      width: 100%;
+      height: 150px;
+      background-color: white;
+      border: black 1px solid;
+      margin-bottom: 5px;
+      overflow: scroll;
+    }
+    &__sub-area{
+      display: flex;
+      .output{
+        background-color: white;
+        border: black 1px solid;
+        width: 150px;
+        text-align: center;
+      }
+    }
+  }
 }
