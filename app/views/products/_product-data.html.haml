@@ -7,22 +7,22 @@
 
   .contents
     .contents__manufacturing.content.show
-      -# .content__production.block
       .block
         .title
           製作工程
-        - if current_user.department_id == 1 && @production_datum.blank?
+        - if user_department_and_datum?(1, @production_datum)
           -# ↓機能実装時に確定ルーティングを設定する事
           = form_with(model: @production, local: true) do |form|
             .comment-area
-              = render partial: "products/form", locals: { form: form }
+              = render partial: "form", locals: { form: form }
         - else
           .comment-area
-            = render partial: "products/comment"
+            = render partial: "comment", locals: { datum: @production_datum }
+
       .block
         .title
           検査工程
-        - if current_user.department_id == 1 && @inspection_datum.blank?
+        - if user_department_and_datum?(1, @inspection_datum)
           -# ↓機能実装時に確定ルーティングを設定する事
           = form_with(model: @inspection, local: true) do |form|
             .comment-area
@@ -34,34 +34,28 @@
                 cm　
                 = form.text_field :weight, class: "size-input", placeholder: "重量"
                 kg
-              = render partial: "products/form", locals: { form: form }
+              = render partial: "form", locals: { form: form }
         - else
           .comment-area
             .comment-area__size-area
               実寸法：
-              .size-output
-                仮入力
-                -# = product.inspection.length
+              %input.size-output{value: "#{@datum_length}", readonly: "readonly"}
               m ✖️
-              .size-output
-                仮入力
-                -# = product.inspection.width
+              %input.size-output{value: "#{@datum_width}", readonly: "readonly"}
               cm　
-              .size-output
-                仮入力
-                -# = product.inspection.weight
+              %input.size-output{value: "#{@datum_weight}", readonly: "readonly"}
               kg
-            = render partial: "products/comment"
+            = render partial: "comment", locals: { datum: @inspection_datum }
 
     .contents__sales.content
       .block
         .title
           顧客評価
-        - if current_user.department_id == 2 && @evaluation_datum.blank?
+        - if user_department_and_datum?(2, @evaluation_datum_datum)
           -# ↓機能実装時に確定ルーティングを設定する事
-          = form_with(model: @evalution, local: true) do |form|
+          = form_with(model: @evaluation, local: true) do |form|
             .comment-area
-              = render partial: "products/form", locals: { form: form }
+              = render partial: "form", locals: { form: form }
         - else
           .comment-area
-            = render partial: "products/comment"
+            = render partial: "comment", locals: { datum: @evaluation_datum }

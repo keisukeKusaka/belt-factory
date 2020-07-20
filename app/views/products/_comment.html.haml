@@ -1,11 +1,6 @@
-.comment-area__main-area
-  仮の記入済みコメント
+%input.comment-area__main-area{value: "#{@datum_comment}""#{@datum_image}", readonly: "readonly"}
 .comment-area__sub-area
   記入日：
-  .output
-    仮入力
-    -# = product.inspection.date
+  %input.output{value: "#{@datum_created_at}", readonly: "readonly"}
   担当者：
-  .output
-    仮入力
-    -# = product.inspection.name
+  %input.output{value: "#{@datum_name}", readonly: "readonly"}
