@@ -39,6 +39,10 @@ class ProductsController < ApplicationController
     @product_length = @product.length
     @product_width = @product.width
     @product_weight = (@product.length * @product.width * @product.material.basis_weight / 100).round(1)
+
+    @production_datum = @product.production_datum
+    @inspection_datum = @product.inspection_datum
+    @evaluation_datum = @product.evaluation_datum
   end
 
   private
