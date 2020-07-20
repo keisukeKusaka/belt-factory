@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  include ApplicationHelper
   before_action :new_action_only_sales, {only: :new}
 
   def index
@@ -32,17 +33,10 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-
-    @product_number = @product.number
-    @product_campany = @product.client.campany
-    @product_material = @product.material.name
-    @product_length = @product.length
-    @product_width = @product.width
-    @product_weight = (@product.length * @product.width * @product.material.basis_weight / 100).round(1)
-
-    @production_datum = @product.production_datum
-    @inspection_datum = @product.inspection_datum
-    @evaluation_datum = @product.evaluation_datum
+    create_product_design(@product)
+    create_product_datum(@production_datum)
+    create_product_datum(@inspection_datum)
+    create_product_datum(@evaluation_datum)
   end
 
   private
