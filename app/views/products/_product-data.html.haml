@@ -12,7 +12,7 @@
           製作工程
         - if user_department_and_datum?(1, @production_datum)
           -# ↓機能実装時に確定ルーティングを設定する事
-          = form_with(model: @production, local: true) do |form|
+          = form_with(model: [@product, @production_datum_new], local: true) do |form|
             .comment-area
               = render partial: "form", locals: { form: form }
         - else

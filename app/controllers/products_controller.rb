@@ -37,6 +37,7 @@ class ProductsController < ApplicationController
     create_product_datum(@production_datum)
     create_product_datum(@inspection_datum)
     create_product_datum(@evaluation_datum)
+    @production_datum_new = ProductionDatum.new
   end
 
   private
