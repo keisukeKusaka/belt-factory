@@ -2,7 +2,7 @@
   .title
     検査工程
   - if user_department_and_datum?(1, @inspection_datum)
-    = form_with(model: @inspection, local: true) do |form|
+    = form_with(model: [@product, @inspection_datum_new], local: true) do |form|
       .comment-area
         .comment-area__size-area
           実寸法：

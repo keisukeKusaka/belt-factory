@@ -6,5 +6,6 @@ Rails.application.routes.draw do
       get "search"
     end
     resources :production_data, only: :create
+    resources :inspection_data, only: :create
   end
 end

@@ -38,12 +38,13 @@ class ProductsController < ApplicationController
     create_inspection_datum
     create_evaluation_datum
     @production_datum_new = ProductionDatum.new
+    @inspection_datum_new = InspectionDatum.new
   end
 
   private
 
   def product_params
-    params.require(:product).permit(:number, :length, :width, :client_id, :material_id).merge(user_id: current_user.id)
+    params.require(:product).permit(:number, :length, :width, :comment,:client_id, :material_id).merge(user_id: current_user.id)
   end
 
   def new_action_only_sales
