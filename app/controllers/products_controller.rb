@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  include ApplicationHelper
   before_action :new_action_only_sales, {only: :new}
 
   def index
@@ -24,21 +25,27 @@ class ProductsController < ApplicationController
   end
 
   def search
-    product = Product.find_by(number: params[:number])
-    unless product.blank?
-      @product_number = product.number
-      @product_campany = product.client.campany
-      @product_material = product.material.name
-      @product_length = product.length
-      @product_width = product.width
-      @product_weight = (product.length * product.width * product.material.basis_weight / 100).round(1)
-      @product_pro_comment = product.production_datum.comment
+    @product = Product.find_by(number: params[:number])
+    unless @product.blank?
+      redirect_to "/products/#{@product.id}"
     end
   end
 
+  def show
+    @product = Product.find(params[:id])
+    create_product_design(@product)
+    create_production_datum
+    create_inspection_datum
+    create_evaluation_datum
+    @production_datum_new = ProductionDatum.new
+    @inspection_datum_new = InspectionDatum.new
+    @evaluation_datum_new = EvaluationDatum.new
+  end
+
   private
+
   def product_params
-    params.require(:product).permit(:number, :length, :width, :client_id, :material_id).merge(user_id: current_user.id)
+    params.require(:product).permit(:number, :length, :width, :comment,:client_id, :material_id).merge(user_id: current_user.id)
   end
 
   def new_action_only_sales

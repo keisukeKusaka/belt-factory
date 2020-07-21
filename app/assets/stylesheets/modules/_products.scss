@@ -161,7 +161,7 @@ a {
       .size-output{
         background-color: white;
         border: black 1px solid;
-        width: 100px;
+        width: 80px;
         text-align: right;
       }
     }
@@ -173,12 +173,16 @@ a {
       margin-bottom: 5px;
       overflow: scroll;
     }
+    &__image-area{
+      border: black 1px solid;
+      margin-bottom: 5px;
+    }
     &__sub-area{
       display: flex;
       .output{
         background-color: white;
         border: black 1px solid;
-        width: 150px;
+        width: 200px;
         text-align: center;
       }
     }
