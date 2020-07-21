@@ -1,0 +1,18 @@
+.block
+  .title
+    製作工程
+  - if user_department_and_datum?(1, @production_datum)
+    = form_with(model: [@product, @production_datum_new], local: true) do |form|
+      .comment-area
+        = render partial: "form", locals: { form: form }
+  - else
+    .comment-area
+      %textarea.comment-area__main-area{readonly: "readonly"}
+        = @production_datum_comment
+      -if @production_datum_image.present?
+        = image_tag @production_datum_image, class: "comment-area__image-area"
+      .comment-area__sub-area
+        記入日：
+        %input.output{value: "#{@production_datum_created_at}", readonly: "readonly"}
+        　担当者：
+        %input.output{value: "#{@production_datum_name}", readonly: "readonly"}

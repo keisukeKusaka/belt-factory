@@ -1,0 +1,34 @@
+.block
+  .title
+    検査工程
+  - if user_department_and_datum?(1, @inspection_datum)
+    = form_with(model: @inspection, local: true) do |form|
+      .comment-area
+        .comment-area__size-area
+          実寸法：
+          = form.text_field :length, class: "size-input", placeholder: "周長"
+          m ✖️
+          = form.text_field :width, class: "size-input", placeholder: "横幅"
+          cm　
+          = form.text_field :weight, class: "size-input", placeholder: "重量"
+          kg
+        = render partial: "form", locals: { form: form }
+  - else
+    .comment-area
+      .comment-area__size-area
+        実寸法：
+        %input.size-output{value: "#{@inspection_datum_length}", readonly: "readonly"}
+        m ✖️
+        %input.size-output{value: "#{@inspection_datum_width}", readonly: "readonly"}
+        cm　
+        %input.size-output{value: "#{@inspection_datum_weight}", readonly: "readonly"}
+        kg
+      %textarea.comment-area__main-area{readonly: "readonly"}
+        = @inspection_datum_comment
+      -if @inspection_datum_image.present?
+        = image_tag @inspection_datum_image, class: "comment-area__image-area"
+      .comment-area__sub-area
+        記入日：
+        %input.output{value: "#{@inspection_datum_created_at}", readonly: "readonly"}
+        　担当者：
+        %input.output{value: "#{@inspection_datum_name}", readonly: "readonly"}

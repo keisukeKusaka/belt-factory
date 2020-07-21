@@ -1,0 +1,18 @@
+.block
+  .title
+    顧客評価
+  - if user_department_and_datum?(2, @evaluation_datum_datum)
+    = form_with(model: @evaluation, local: true) do |form|
+      .comment-area
+        = render partial: "form", locals: { form: form }
+  - else
+    .comment-area
+      %textarea.comment-area__main-area{readonly: "readonly"}
+        = @evaluation_datum_comment
+      -if @evaluation_datum_image.present?
+        = image_tag @evaluation_datum_image, class: "comment-area__image-area"
+      .comment-area__sub-area
+        記入日：
+        %input.output{value: "#{@evaluation_datum_created_at}", readonly: "readonly"}
+        　担当者：
+        %input.output{value: "#{@evaluation_datum_name}", readonly: "readonly"}

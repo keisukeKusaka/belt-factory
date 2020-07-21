@@ -7,55 +7,7 @@
 
   .contents
     .contents__manufacturing.content.show
-      .block
-        .title
-          製作工程
-        - if user_department_and_datum?(1, @production_datum)
-          -# ↓機能実装時に確定ルーティングを設定する事
-          = form_with(model: [@product, @production_datum_new], local: true) do |form|
-            .comment-area
-              = render partial: "form", locals: { form: form }
-        - else
-          .comment-area
-            = render partial: "comment", locals: { datum: @production_datum }
-
-      .block
-        .title
-          検査工程
-        - if user_department_and_datum?(1, @inspection_datum)
-          -# ↓機能実装時に確定ルーティングを設定する事
-          = form_with(model: @inspection, local: true) do |form|
-            .comment-area
-              .comment-area__size-area
-                実寸法：
-                = form.text_field :length, class: "size-input", placeholder: "周長"
-                m ✖️
-                = form.text_field :width, class: "size-input", placeholder: "横幅"
-                cm　
-                = form.text_field :weight, class: "size-input", placeholder: "重量"
-                kg
-              = render partial: "form", locals: { form: form }
-        - else
-          .comment-area
-            .comment-area__size-area
-              実寸法：
-              %input.size-output{value: "#{@datum_length}", readonly: "readonly"}
-              m ✖️
-              %input.size-output{value: "#{@datum_width}", readonly: "readonly"}
-              cm　
-              %input.size-output{value: "#{@datum_weight}", readonly: "readonly"}
-              kg
-            = render partial: "comment", locals: { datum: @inspection_datum }
-
+      = render "production_datum"
+      = render "inspection_datum"
     .contents__sales.content
-      .block
-        .title
-          顧客評価
-        - if user_department_and_datum?(2, @evaluation_datum_datum)
-          -# ↓機能実装時に確定ルーティングを設定する事
-          = form_with(model: @evaluation, local: true) do |form|
-            .comment-area
-              = render partial: "form", locals: { form: form }
-        - else
-          .comment-area
-            = render partial: "comment", locals: { datum: @evaluation_datum }
+      = render "evaluation_datum"
