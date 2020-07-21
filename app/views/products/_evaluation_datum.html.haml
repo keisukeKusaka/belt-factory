@@ -1,8 +1,8 @@
 .block
   .title
     顧客評価
-  - if user_department_and_datum?(2, @evaluation_datum_datum)
-    = form_with(model: @evaluation, local: true) do |form|
+  - if user_department_and_datum?(2, @evaluation_datum)
+    = form_with(model: [@product, @evaluation_datum_new], local: true) do |form|
       .comment-area
         = render partial: "form", locals: { form: form }
   - else

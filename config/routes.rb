@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     end
     resources :production_data, only: :create
     resources :inspection_data, only: :create
+    resources :evaluation_data, only: :create
   end
 end
