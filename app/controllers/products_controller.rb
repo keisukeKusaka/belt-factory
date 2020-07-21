@@ -34,9 +34,9 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     create_product_design(@product)
-    create_product_datum(@production_datum)
-    create_product_datum(@inspection_datum)
-    create_product_datum(@evaluation_datum)
+    create_production_datum
+    create_inspection_datum
+    create_evaluation_datum
     @production_datum_new = ProductionDatum.new
   end
 
