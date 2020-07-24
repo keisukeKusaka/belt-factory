@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :validatable
   validates :name, presence: true
   validates :number, presence: true, uniqueness: true, length: { is: 6 }, format: { with: /\A[0-9]{6}\z/ }
+  validates :password, format: { with: /([0-9].*[a-zA-Z]|[a-zA-Z].*[0-9])/}
 
   belongs_to :department
   has_many :products
