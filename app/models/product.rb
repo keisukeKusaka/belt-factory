@@ -7,4 +7,6 @@ class Product < ApplicationRecord
   has_one :evaluation_datum
 
   validates :number, presence: true, uniqueness: true
+  validates :length, presence: true
+  validates :width, presence: true
 end
