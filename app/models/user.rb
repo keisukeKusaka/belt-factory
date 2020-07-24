@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :validatable
   validates :name, presence: true
-  validates :number, presence: true, uniqueness: true, length: { is: 6 }
+  validates :number, presence: true, uniqueness: true, length: { is: 6 }, format: { with: /\A[0-9]{6}\z/ }
 
   belongs_to :department
   has_many :products
