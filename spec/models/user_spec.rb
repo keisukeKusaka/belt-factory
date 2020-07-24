@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe User do
   describe '#create' do
-
     #1
     it "name, number, password, department_idが存在すれば登録できる" do
       user = build(:user)
@@ -79,6 +78,5 @@ describe User do
       user.valid?
       expect(user.errors[:password]).to include("is invalid")
     end
-    # passwordに英字と数字の両方を要するバリデーションを追加する事
   end
 end
