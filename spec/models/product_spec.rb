@@ -16,20 +16,18 @@ describe Product do
     end
 
     #3
-    # it "lengthが無い場合は登録できない" do
-    #   product = build(:product, length: nil)
-    #   product.valid?
-    #   expect(product.errors[:length]).to include("can't be blank")
-    # end
-    # lengthにバリデーションを追加すること
+    it "lengthが無い場合は登録できない" do
+      product = build(:product, length: nil)
+      product.valid?
+      expect(product.errors[:length]).to include("can't be blank")
+    end
 
     #4
-    # it "widthが無い場合は登録できない" do
-    #   product = build(:product, width: nil)
-    #   product.valid?
-    #   expect(product.errors[:width]).to include("can't be blank")
-    # end
-    # widthにバリデーションを追加すること
+    it "widthが無い場合は登録できない" do
+      product = build(:product, width: nil)
+      product.valid?
+      expect(product.errors[:width]).to include("can't be blank")
+    end
 
     #5
     it "client_idが無い場合は登録できない" do
@@ -69,26 +67,24 @@ describe Product do
     # productを登録できるuserの制限を設定する事
 
     #10
-    # it "numberに数字以外の文字が含まれる場合は登録できない" do
-    #   product = build(:product, number: "test12")
-    #   product.valid?
-    #   expect(product.errors[:number]).to include("is invalid")
-    # end
-    # numberに数値のみを受け付けるバリデーションを追加する事
+    it "numberに数字以外の文字が含まれる場合は登録できない" do
+      product = build(:product, number: "test12")
+      product.valid?
+      expect(product.errors[:number]).to include("is invalid")
+    end
 
     #11
-    # it "numberが5文字以下の場合は登録できない" do
-    #   product = build(:product, number: "12345")
-    #   product.valid?
-    #   expect(product.errors[:number]).to include("is the wrong length (should be 6 characters)")
-    # end
+    it "numberが5文字以下の場合は登録できない" do
+      product = build(:product, number: "12345")
+      product.valid?
+      expect(product.errors[:number]).to include("is the wrong length (should be 6 characters)")
+    end
 
     #12
-    # it "numberが7文字以上の場合は登録できない" do
-    #   product = build(:product, number: "1234567")
-    #   product.valid?
-    #   expect(product.errors[:number]).to include("is the wrong length (should be 6 characters)")
-    # end
-    # numberに文字数のバリデーションを追加する事
+    it "numberが7文字以上の場合は登録できない" do
+      product = build(:product, number: "1234567")
+      product.valid?
+      expect(product.errors[:number]).to include("is the wrong length (should be 6 characters)")
+    end
   end
 end
