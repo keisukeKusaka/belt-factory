@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :validatable
   validates :name, presence: true
-  validates :number, presence: true, uniqueness: true
+  validates :number, presence: true, uniqueness: true, length: { is: 6 }
 
   belongs_to :department
   has_many :products
