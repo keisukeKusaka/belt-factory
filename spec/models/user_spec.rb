@@ -38,19 +38,18 @@ describe User do
     end
 
     #6
-    # it "numberが5桁以下の場合は登録できない" do
-    #   user = build(:user, number: "12345")
-    #   user.valid?
-    #   expect(user.errors[:number]).to include("is the wrong length (should be 6 characters)")
-    # end
+    it "numberが5桁以下の場合は登録できない" do
+      user = build(:user, number: "12345")
+      user.valid?
+      expect(user.errors[:number]).to include("is the wrong length (should be 6 characters)")
+    end
 
     #7
-    # it "numberが7桁以上の場合は登録できない" do
-    #   user = build(:user, number: "1234567")
-    #   user.valid?
-    #   expect(user.errors[:number]).to include("is the wrong length (should be 6 characters)")
-    # end
-    # numberに文字数のバリデーションを追加する事
+    it "numberが7桁以上の場合は登録できない" do
+      user = build(:user, number: "1234567")
+      user.valid?
+      expect(user.errors[:number]).to include("is the wrong length (should be 6 characters)")
+    end
 
     #8
     it "重複したnumberのuserが既に存在している場合は登録できない" do
@@ -61,26 +60,25 @@ describe User do
     end
 
     #9
-    it "passwordが5文字以下の場合は登録できない" do
-      user = build(:user, password: "12345")
+    it "passwordが7文字以下の場合は登録できない" do
+      user = build(:user, password: "test123")
       user.valid?
-      expect(user.errors[:password]).to include("is too short (minimum is 6 characters)")
+      expect(user.errors[:password]).to include("is too short (minimum is 8 characters)")
     end
 
     #10
-    # it "numberに数字以外が含まれている場合は登録できない" do
-    #   user = build(:user, number: "test12")
-    #   user.valid?
-    #   expect(user)
-    # end
-    # numberに数値のみを受け付けるバリデーションを追加する事
+    it "numberに数字以外が含まれている場合は登録できない" do
+      user = build(:user, number: "test12")
+      user.valid?
+      expect(user.errors[:number]).to include("is invalid")
+    end
 
     #11
-    # it "passwordに英字と数字の両方が含まれていない場合は登録できない" do
-    #   user = build(:user, password: "123456")
-    #   user.valid?
-    #   expect(user)
-    # end
+    it "passwordに英字と数字の両方が含まれていない場合は登録できない" do
+      user = build(:user, password: "12345678")
+      user.valid?
+      expect(user.errors[:password]).to include("is invalid")
+    end
     # passwordに英字と数字の両方を要するバリデーションを追加する事
   end
 end
