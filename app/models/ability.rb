@@ -4,6 +4,9 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :read, :all
+    can :search, :all
+
     if user.department_id == 1
       can :create, [ProductionDatum, InspectionDatum]
       cannot :create, [Product, EvaluationDatum]
