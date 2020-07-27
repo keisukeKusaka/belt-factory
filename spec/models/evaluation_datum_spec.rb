@@ -30,13 +30,12 @@ describe EvaluationDatum do
     end
 
     #5
-    # it "重複したproduct_idのevaluation_datumが既に存在している場合は登録できない" do
-    #   evaluation_datum = create(:evaluation_datum)
-    #   another_evaluation_datum = build(:evaluation_datum, product_id: evaluation_datum.product_id)
-    #   another_evaluation_datum.valid?
-    #   expect(another_evaluation_datum.errors[:product_id]).to include("has already been taken")
-    # end
-    # product_idにバリデーションをかける事
+    it "重複したproduct_idのevaluation_datumが既に存在している場合は登録できない" do
+      evaluation_datum = create(:evaluation_datum)
+      another_evaluation_datum = build(:evaluation_datum, product_id: evaluation_datum.product_id)
+      another_evaluation_datum.valid?
+      expect(another_evaluation_datum.errors[:product_id]).to include("has already been taken")
+    end
 
     #6
     # it "current_userのidが2の場合は登録できない" do
