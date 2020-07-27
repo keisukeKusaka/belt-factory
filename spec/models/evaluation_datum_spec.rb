@@ -36,13 +36,5 @@ describe EvaluationDatum do
       another_evaluation_datum.valid?
       expect(another_evaluation_datum.errors[:product_id]).to include("has already been taken")
     end
-
-    #6
-    # it "current_userのidが2の場合は登録できない" do
-    #   evaluation_datum = build(:evaluation_datum, )
-    #   evaluation_datum.valid?
-    #   expect(evaluation_datum.errors[:]).to include("must exist")
-    # end
-    # 登録できるuserの制限を設定する事
   end
 end

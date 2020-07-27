@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   include ApplicationHelper
+  load_and_authorize_resource
   before_action :new_action_only_sales, {only: :new}
 
   def index

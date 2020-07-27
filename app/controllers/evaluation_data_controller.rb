@@ -1,4 +1,6 @@
 class EvaluationDataController < ApplicationController
+  load_and_authorize_resource
+
   def create
     @production_datum_new = EvaluationDatum.create(evaluation_data_params)
     redirect_to "/products/#{params[:product_id]}"

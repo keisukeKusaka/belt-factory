@@ -58,14 +58,6 @@ describe Product do
       expect(another_product.errors[:number]).to include("has already been taken")
     end
 
-    #9
-    # it "current_userのidが1の場合は登録できない" do
-    #   product = build(:product, )
-    #   product.valid?
-    #   expect(product.errors[:]).to include("must exist")
-    # end
-    # productを登録できるuserの制限を設定する事
-
     #10
     it "numberに数字以外の文字が含まれる場合は登録できない" do
       product = build(:product, number: "test12")

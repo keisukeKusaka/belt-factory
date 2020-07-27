@@ -1,4 +1,6 @@
 class ProductionDataController < ApplicationController
+  load_and_authorize_resource
+
   def create
     @production_datum_new = ProductionDatum.create(production_data_params)
     redirect_to "/products/#{params[:product_id]}"
