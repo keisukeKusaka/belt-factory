@@ -51,13 +51,12 @@ describe InspectionDatum do
     end
 
     #8
-    # it "重複したproduct_idのinspection_datumが既に存在している場合は登録できない" do
-    #   inspection_datum = create(:inspection_datum)
-    #   another_inspection_datum = build(:inspection_datum, product_id: inspection_datum.product_id)
-    #   another_inspection_datum.valid?
-    #   expect(another_inspection_datum.errors[:product_id]).to include("has already been taken")
-    # end
-    # product_idにバリデーションをかける事
+    it "重複したproduct_idのinspection_datumが既に存在している場合は登録できない" do
+      inspection_datum = create(:inspection_datum)
+      another_inspection_datum = build(:inspection_datum, product_id: inspection_datum.product_id)
+      another_inspection_datum.valid?
+      expect(another_inspection_datum.errors[:product_id]).to include("has already been taken")
+    end
 
     #9
     # it "current_userのidが2の場合は登録できない" do
