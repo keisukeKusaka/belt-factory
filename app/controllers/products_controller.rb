@@ -12,8 +12,7 @@ class ProductsController < ApplicationController
     @client = Client.all
     @material = Material.all
 
-    new_id_int = Product.maximum(:number).to_i + 1
-    @new_id = "%06d" % new_id_int
+    @new_number = "%06d" % (Product.maximum(:number).to_i + 1)
   end
 
   def create
