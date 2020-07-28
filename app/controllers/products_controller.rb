@@ -19,9 +19,10 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to root_path
-    else
-      render :new
+      redirect_to new_product_path
+    # else
+      #失敗時にエラーメッセージを表示するよう設定する事
+      #ボタンを再度押せるよう設定する事
     end
   end
 
