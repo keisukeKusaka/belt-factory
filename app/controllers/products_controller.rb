@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   def search
     @product = Product.find_by(number: params[:number])
     unless @product.blank?
-      redirect_to "/products/#{@product.id}"
+      redirect_to product_path(@product)
     end
   end
 
