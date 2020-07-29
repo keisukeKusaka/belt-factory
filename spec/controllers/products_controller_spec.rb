@@ -42,7 +42,7 @@ describe ProductsController do
       expect(assigns(:material)).to eq Material.all
     end
 
-    it '@new_idに期待される文字列が代入されている' do
+    it '@new_numberに期待される文字列が代入されている' do
       expect(assigns(:new_number)).to eq ("%06d" % (Product.maximum(:number).to_i + 1))
     end
   end
@@ -63,6 +63,28 @@ describe ProductsController do
   end
 
   describe "search" do
+    context "検索が成功した場合" do
+      before do
+        get :search, params: {number: product.number}
+      end
 
+      it '@productに期待される文字列が代入されている' do
+        expect(assigns(:product)).to eq Product.find_by(product.number)
+      end
+
+      it 'product_path(@product)へリダイレクトする' do
+        expect(response).to redirect_to(product_path(product))
+      end
+    do
+
+    context "検索が失敗した場合" do
+      before do
+        get :search, params: {number: nil}
+      end
+
+      it 'search_products_pathへリダイレクトする' do
+        expect(response).to render_template :search
+      end
+    end
   end
 end
