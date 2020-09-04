@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe ProductsController do
+  include ApplicationHelper
   let(:client) { create(:client) }
   let(:material) { create(:material) }
   let(:department) { create(:department, id: 2)}
@@ -50,7 +51,7 @@ describe ProductsController do
   describe "#create" do
     before do
       product_params = attributes_for(:product)
-      post :create, params: {product: product_params}
+      post :create, params: { product: product_params }
     end
 
     it '@productにProduct.newが代入されている' do
@@ -62,10 +63,10 @@ describe ProductsController do
     end
   end
 
-  describe "search" do
+  describe "#search" do
     context "検索が成功した場合" do
       before do
-        get :search, params: {number: product.number}
+        get :search, params: { number: product.number }
       end
 
       it '@productに期待される文字列が代入されている' do
@@ -75,16 +76,31 @@ describe ProductsController do
       it 'product_path(@product)へリダイレクトする' do
         expect(response).to redirect_to(product_path(product))
       end
-    do
+    end
 
     context "検索が失敗した場合" do
       before do
-        get :search, params: {number: nil}
+        get :search, params: { number: nil }
       end
 
       it 'search_products_pathへリダイレクトする' do
         expect(response).to render_template :search
       end
+    end
+
+    describe "#show" do
+      before do
+        get :show, params: { id: product.id }
+      end
+
+      it '@productに期待される文字列が代入されている' do
+        expect(assigns(:product)).to eq Product.find(product.id)
+      end
+
+      it 'create_product_design(@product)が行われている' do
+        expect(assigns(:product)).to eq Product.find(product.id)
+      end
+
     end
   end
 end
