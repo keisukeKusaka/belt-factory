@@ -12,23 +12,20 @@ class ProductsController < ApplicationController
     @client = Client.all
     @material = Material.all
 
-    new_id_int = Product.maximum(:number).to_i + 1
-    @new_id = "%06d" % new_id_int
+    @new_number = "%06d" % (Product.maximum(:number).to_i + 1)
   end
 
   def create
     @product = Product.new(product_params)
-    if @product.save
-      redirect_to root_path
-    else
-      render :new
-    end
+    @product.save
+    redirect_to new_product_path
+      #失敗時にエラーメッセージを表示するよう設定する事
   end
 
   def search
     @product = Product.find_by(number: params[:number])
     unless @product.blank?
-      redirect_to "/products/#{@product.id}"
+      redirect_to product_path(@product)
     end
   end
 
