@@ -1,7 +1,7 @@
 .main-content__new-product
   新規登録
   = form_with(model: @product, local: true) do |form|
-    .form
+    .form#product_design
       .info
         製品番号
         = form.text_field :number, class: "info__input", readonly: "readonly", id: "number", value: @new_number
@@ -13,7 +13,7 @@
         前回品と同設計で入力
       .info
         材質
-        = form.select :material_id, options_for_select(@material.map{|material|[material[:name], material[:id], {}]}, ""), {}, {class: "info__input"}
+        = form.select :material_id, options_for_select(@material.map{|material|[material[:name], material[:id], {"basis_weight"=>material[:basis_weight]}]}, ""), {}, {class: "info__input"}
       .info-size.clearfix
         設計寸法
         .info-size__size
@@ -22,8 +22,7 @@
           = form.text_field :width, class: "input"
           cm
         .info-size__weight
-          仮入力
-          -# = #次の計算結果→length * width * material.basis-weight
+          %input#calculation-weight.info__output{type: "text",readonly: "readonly"}
           kg
       = form.submit "登録", class: "submit-btn"
   = link_to "ホームへ戻る", root_path, class: "root-path"
