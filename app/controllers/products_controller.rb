@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   before_action :new_action_only_sales, {only: :new}
 
   def index
+    @products = Product.includes(:production_datum, :inspection_datum, :evaluation_datum, :material, :client).order("created_at DESC").page(params[:page]).per(10)
   end
 
   def new
