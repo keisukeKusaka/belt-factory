@@ -39,6 +39,7 @@ class ProductsController < ApplicationController
     @production_datum_new = ProductionDatum.new
     @inspection_datum_new = InspectionDatum.new
     @evaluation_datum_new = EvaluationDatum.new
+    @products = Product.where(client_id: @product.client_id).order("created_at DESC").page(params[:page]).per(5)
   end
 
   private
