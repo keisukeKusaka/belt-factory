@@ -5,3 +5,15 @@ $(function () {
     $(this).parents('tr').unbind('click');
   });
 });
+
+$(function () {
+  var lines = $("tbody tr");
+  function getActive() {
+    $(this).addClass("active");
+  };
+  function removeActive() {
+    $(".active").removeClass("active");
+  };
+  lines.mouseenter(getActive);
+  lines.mouseleave(removeActive);
+});
