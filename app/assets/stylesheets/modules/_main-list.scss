@@ -1,0 +1,30 @@
+.main-list {
+  margin: 10px;
+  min-width: 900px;
+  max-width: 1200px;
+  background-color: whitesmoke;
+  border: black 2px solid;
+  text-align: center;
+  line-height: 40px;
+  .table {
+    font-size: small;
+    margin-bottom: 0;
+    th {
+      padding: 0;
+      text-align: center;
+      border-top: 1px solid gray;
+      border-bottom: 1px solid gray;
+    }
+    td {
+      padding: 0;
+      border-bottom: 1px solid gray;
+      .number {
+        font-size: 18px;
+      }
+    }
+  }
+  .paginate {
+    padding-left: 20px;
+    // margin-bottom: 10px 0;
+  }
+}
