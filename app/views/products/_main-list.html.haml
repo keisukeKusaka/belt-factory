@@ -24,9 +24,10 @@
             顧客評価
       %tbody
         - @products.each do |product|
-          %tr.product
-            %td.number
-              = product.number
+          %tr.product{data_link: product_path(product)}
+            %td
+              .number
+                = product.number
             %td
               = product.client.campany
             %td
