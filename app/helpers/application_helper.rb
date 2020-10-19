@@ -45,4 +45,9 @@ module ApplicationHelper
       @evaluation_datum_name = @evaluation_datum.user.name
     end
   end
+
+  def weight(product)
+    weight = (product.length * product.width * product.material.basis_weight / 100).round(1)
+    "#{weight}"
+  end
 end

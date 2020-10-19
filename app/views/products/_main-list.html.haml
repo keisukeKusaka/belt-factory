@@ -1,0 +1,56 @@
+.main-content__main-list
+  .main-list
+    全ての製品一覧
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+            製品番号
+          %th
+            社名
+          %th
+            材質
+          %th
+            周長
+          %th
+            幅
+          %th
+            重量
+          %th
+            制作工程
+          %th
+            検査工程
+          %th
+            顧客評価
+      %tbody
+        - @products.each do |product|
+          %tr.product{data_link: product_path(product)}
+            %td
+              .number
+                = product.number
+            %td
+              = product.client.campany
+            %td
+              = product.material.name
+            %td
+              = product.length
+              m
+            %td
+              = product.width
+              cm
+            %td
+              = weight(product)
+              kg
+            %td
+              - if product.production_datum.present?
+                = product.production_datum.updated_at.strftime("%Y/%m/%d")
+            %td
+              - if product.inspection_datum.present?
+                = product.inspection_datum.updated_at.strftime("%Y/%m/%d")
+            %td
+              - if product.evaluation_datum.present?
+                = product.evaluation_datum.updated_at.strftime("%Y/%m/%d")
+
+
+    .paginate
+      = paginate(@products)

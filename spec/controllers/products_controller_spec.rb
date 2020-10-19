@@ -20,6 +20,10 @@ describe ProductsController do
     it 'index.html.hamlに遷移する' do
       expect(response).to render_template :index
     end
+
+    it '@productsにProductモデルのレコードが降順で代入されている' do
+      expect(assigns(:products)).to eq Product.all.reverse
+    end
   end
 
   describe "#new" do
