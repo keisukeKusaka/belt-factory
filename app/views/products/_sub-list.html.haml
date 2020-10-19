@@ -1,0 +1,13 @@
+.side-bar__sub-list
+  .sub-list
+    = @product_campany
+    の製品一覧
+    %table.table
+      %tbody
+        - @products.each do |product|
+          %tr.product{data_link: product_path(product)}
+            %td
+              .number
+                = product.number
+    .paginate
+      = paginate(@products)
