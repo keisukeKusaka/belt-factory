@@ -1,0 +1,27 @@
+.sub-list {
+  background-color: rgb(236, 154, 122);
+  width: 260px;
+  margin: 10px 20px;
+  border: black 2px solid;
+  padding: 10px 20px;
+  text-align: center;
+  line-height: 35px;
+  display: block;
+  .table {
+    margin-bottom: 0;
+    background-color: white;
+    border: 1px solid black;
+    .active {
+      background-color: gainsboro;
+      cursor: pointer;
+    }
+    td {
+      padding: 0;
+      border-top: 1px solid black;
+      border-bottom: 1px solid gray;
+    }
+  }
+  .pagination {
+    justify-content: center;
+  }
+}
