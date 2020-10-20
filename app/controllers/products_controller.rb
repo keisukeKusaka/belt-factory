@@ -32,10 +32,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    create_product_design(@product)
-    create_production_datum
-    create_inspection_datum
-    create_evaluation_datum
+    product_datum(@product)
     @production_datum_new = ProductionDatum.new
     @inspection_datum_new = InspectionDatum.new
     @evaluation_datum_new = EvaluationDatum.new
