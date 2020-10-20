@@ -8,11 +8,11 @@
   - else
     .comment-area
       %textarea.comment-area__main-area{readonly: "readonly"}
-        = @production_datum_comment
-      -if @production_datum_image.present?
-        = image_tag @production_datum_image, class: "comment-area__image-area"
+        = @production_datum&.comment
+      -if @production_datum&.image.present?
+        = image_tag @production_datum&.image&.url, class: "comment-area__image-area"
       .comment-area__sub-area
         記入日：
-        %input.output{value: "#{@production_datum_created_at}", readonly: "readonly"}
+        %input.output{value: "#{@production_datum&.updated_at&.strftime("%Y/%m/%d")}", readonly: "readonly"}
         　担当者：
-        %input.output{value: "#{@production_datum_name}", readonly: "readonly"}
+        %input.output{value: "#{@production_datum&.user&.name}", readonly: "readonly"}
