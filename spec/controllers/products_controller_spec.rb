@@ -7,6 +7,7 @@ describe ProductsController do
   let(:department) { create(:department, id: 2)}
   let(:user) { create(:user, department_id: department.id) }
   let(:product) { create(:product, client_id: client.id, material_id: material.id, user_id: user.id) }
+  let(:production_datum) { create(:production_datum, user_id: user.id, product_id: product.id) }
 
   before do
     login user
@@ -101,10 +102,21 @@ describe ProductsController do
         expect(assigns(:product)).to eq Product.find(product.id)
       end
 
-      it 'create_product_design(@product)が行われている' do
-        expect(assigns(:product)).to eq Product.find(product.id)
+      it 'product_datum(@product)が行われている' do
+        expect(assigns(:production_datum)).to eq product.production_datum
       end
 
+      it '@production_datum_newにProductionDatum.newが代入されている' do
+        expect(assigns(:production_datum_new)).to be_a_new(ProductionDatum)
+      end
+
+      it '@inspection_datum_newにInspectionDatum.newが代入されている' do
+        expect(assigns(:inspection_datum_new)).to be_a_new(InspectionDatum)
+      end
+
+      it '@evaluation_datum_newにEvaluationDatum.newが代入されている' do
+        expect(assigns(:evaluation_datum_new)).to be_a_new(EvaluationDatum)
+      end
     end
   end
 end
