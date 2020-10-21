@@ -3,3 +3,8 @@
     .info__output
       = current_user.name
     = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'info__logout'
+    %br
+      - if current_user.number == "990001"
+        = link_to "営業部アカウントへ切り替える", users_change_to_sales_guest_path, method: :post
+      - if current_user.number == "990002"
+        = link_to "製造部アカウントへ切り替える", users_change_to_production_guest_path, method: :post
