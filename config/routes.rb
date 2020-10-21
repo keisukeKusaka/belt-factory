@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   }
   devise_scope :user do
     post "users/production_guest_sign_in", to: "users/sessions#new_production_guest"
+    post "users/sales_guest_sign_in", to: "users/sessions#new_sales_guest"
   end
   root "products#index"
   resources :products, only: [:new, :create, :show] do

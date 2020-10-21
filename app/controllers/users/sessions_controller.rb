@@ -6,6 +6,12 @@ class Users::SessionsController < Devise::SessionsController
     sign_in user
     redirect_to root_path
   end
+
+  def new_sales_guest
+    user = User.sales_guest
+    sign_in user
+    redirect_to root_path
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
