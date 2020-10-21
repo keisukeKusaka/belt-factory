@@ -24,4 +24,12 @@ class User < ApplicationRecord
   def will_save_change_to_email?
     false
   end
+
+  def self.production_guest
+    find_or_create_by!(number: "253253") do |user|
+      user.name = "テストユーザー（製造部員）"
+      user.department_id = 1
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
 end
