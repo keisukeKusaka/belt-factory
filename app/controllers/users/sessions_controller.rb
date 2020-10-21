@@ -12,6 +12,17 @@ class Users::SessionsController < Devise::SessionsController
     sign_in user
     redirect_to root_path
   end
+
+  def change_to_production_guest
+    sign_out current_user
+    new_production_guest
+  end
+
+  def change_to_sales_guest
+    sign_out current_user
+    new_sales_guest
+  end
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
