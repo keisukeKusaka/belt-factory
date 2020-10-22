@@ -18,5 +18,5 @@
     .info-size__weight
       %input.output{value: "#{weight(@product)}", readonly: "readonly"}
       kg
-  - if current_user.department_id == 2
+  - if current_user.department_id == 2 && @product&.production_datum == nil
     = link_to "編集", edit_product_path(@product), class: 'new_product-btn'

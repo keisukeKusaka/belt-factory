@@ -35,18 +35,29 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    if @product.production_datum.present?
+      redirect_to product_path(@product)
+    end
   end
 
   def update
     product = Product.find(params[:id])
-    product.update(product_params)
-    redirect_to product_path(product)
+    if product.production_datum.present?
+      redirect_to product_path(product)
+    else
+      product.update(product_params)
+      redirect_to product_path(product)
+    end
   end
 
   def destroy
     product = Product.find(params[:id])
-    product.destroy
-    redirect_to root_path
+    if product.production_datum.present?
+      redirect_to product_path(product)
+    else
+      product.destroy
+      redirect_to root_path
+    end
   end
 
   private
