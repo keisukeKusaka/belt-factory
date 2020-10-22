@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module BeltFactory
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.time_zone = 'Tokyo'
     config.load_defaults 5.2
 
     # Settings in config/environments/* take precedence over those specified here.
