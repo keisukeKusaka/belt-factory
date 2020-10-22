@@ -8,11 +8,11 @@ class Ability
     can :search, :all
 
     if user.department_id == 1
-      can :create, [ProductionDatum, InspectionDatum]
+      can [:create, :update, :destroy], [ProductionDatum, InspectionDatum]
     end
 
     if user.department_id == 2
-      can :create, [Product, EvaluationDatum]
+      can [:create, :update, :destroy], [Product, EvaluationDatum]
     end
   end
 end
