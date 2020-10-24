@@ -1,0 +1,26 @@
+.main-content__product-form
+  製品情報の変更
+  = form_with(model: @product, local: true) do |form|
+    .form#product_design
+      .info
+        製品番号
+        = form.text_field :number, class: "info__input", readonly: "readonly", id: "number", value: @product.number
+      .info
+        発注先
+        = form.select :client_id, options_for_select(@client.map{|client|[client[:campany], client[:id], {}]}, selected: @product.client.id), {}, {class: "info__input", id: "campany"}
+      .info
+        材質
+        = form.select :material_id, options_for_select(@material.map{|material|[material[:name], material[:id], {"basis_weight"=>material[:basis_weight]}]}, selected: @product.material.id), {}, {class: "info__input"}
+      .info-size.clearfix
+        設計寸法
+        .info-size__size
+          = form.text_field :length, class: "input"
+          m ✖️
+          = form.text_field :width, class: "input"
+          cm
+        .info-size__weight
+          %input#calculation-weight.info__output{type: "text",readonly: "readonly", value: weight(@product)}
+          kg
+      = form.submit "確定", class: "submit-btn"
+  = link_to "削除", product_path(@product), method: :delete
+  = link_to "キャンセル", product_path(@product)

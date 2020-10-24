@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     post "users/change_to_sales_guest", to: "users/sessions#change_to_sales_guest"
   end
   root "products#index"
-  resources :products, only: [:new, :create, :show] do
+  resources :products do
     collection do
       get "search"
     end
