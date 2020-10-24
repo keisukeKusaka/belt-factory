@@ -92,30 +92,129 @@ describe ProductsController do
         expect(response).to render_template :search
       end
     end
+  end
 
-    describe "#show" do
+  describe "#show" do
+    before do
+      get :show, params: { id: product.id }
+    end
+
+    it '@productに期待される文字列が代入されている' do
+      expect(assigns(:product)).to eq Product.find(product.id)
+    end
+
+    it 'product_datum(@product)が行われている' do
+      expect(assigns(:production_datum)).to eq product.production_datum
+    end
+
+    it '@production_datum_newにProductionDatum.newが代入されている' do
+      expect(assigns(:production_datum_new)).to be_a_new(ProductionDatum)
+    end
+
+    it '@inspection_datum_newにInspectionDatum.newが代入されている' do
+      expect(assigns(:inspection_datum_new)).to be_a_new(InspectionDatum)
+    end
+
+    it '@evaluation_datum_newにEvaluationDatum.newが代入されている' do
+      expect(assigns(:evaluation_datum_new)).to be_a_new(EvaluationDatum)
+    end
+  end
+
+  describe "#edit" do
+    context '@productに紐づけられているproduction_datumのデータが存在する場合' do
       before do
-        get :show, params: { id: product.id }
+        get :edit, params: { id: product.id , production_datum: production_datum}
+      end
+
+      it 'product_path(@product)へリダイレクトする' do
+        expect(response).to redirect_to(product_path(product))
+      end
+    end
+
+    context '@productに紐づけられているproduction_datumのデータが存在しない場合' do
+      before do
+        get :edit, params: { id: product.id }
       end
 
       it '@productに期待される文字列が代入されている' do
         expect(assigns(:product)).to eq Product.find(product.id)
       end
 
-      it 'product_datum(@product)が行われている' do
-        expect(assigns(:production_datum)).to eq product.production_datum
+      it 'edit.html.hamlに遷移する' do
+        expect(response).to render_template :edit
+      end
+    end
+  end
+
+  describe "#update" do
+    context 'productに紐づけられているproduction_datumのデータが存在する場合' do
+      before do
+        product_params = { length: 43.21 }
+        patch :update, params: { id: product.id, production_datum: production_datum, product: product_params}
       end
 
-      it '@production_datum_newにProductionDatum.newが代入されている' do
-        expect(assigns(:production_datum_new)).to be_a_new(ProductionDatum)
+      it 'productを更新できない' do
+        expect(product.reload.length).to eq 12.34
       end
 
-      it '@inspection_datum_newにInspectionDatum.newが代入されている' do
-        expect(assigns(:inspection_datum_new)).to be_a_new(InspectionDatum)
+      it 'product_path(product)へリダイレクトする' do
+        expect(response).to redirect_to(product_path(product))
+      end
+    end
+
+    context 'productに紐づけられているproduction_datumのデータが存在しない場合' do
+      before do
+        product_params = { length: 43.21 }
+        patch :update, params: { id: product.id, product: product_params }
       end
 
-      it '@evaluation_datum_newにEvaluationDatum.newが代入されている' do
-        expect(assigns(:evaluation_datum_new)).to be_a_new(EvaluationDatum)
+      it 'productを更新できている' do
+        expect(product.reload.length).to eq 43.21
+      end
+
+      it 'product_path(@product)へリダイレクトする' do
+        expect(response).to redirect_to(product_path(product))
+      end
+    end
+  end
+
+  describe "#destroy" do
+    subject {
+      delete :destroy, params: { id: product }
+    }
+
+    context 'productに紐づけられているproduction_datumのデータが存在する場合' do
+      before do
+        product = attributes_for(:product, production_datum: production_datum)
+      end
+
+      it 'productは削除されていない' do
+        expect do
+          subject
+        end.to change(Product, :count).by(0)
+      end
+
+      it 'product_path(product)へリダイレクトする' do
+        subject
+        expect(response).to redirect_to(product_path(product))
+      end
+    end
+
+    context 'productに紐づけられているproduction_datumのデータが存在しない場合' do
+      before do
+        product_params = attributes_for(:product)
+        product.reload
+      end
+
+      it 'productを削除できている' do
+        expect do
+          subject
+        end.to change{Product.ids.count}.by(-1)
+      end
+
+      it 'root_pathに遷移する' do
+        subject
+        expect(response).to redirect_to root_path
       end
     end
   end
