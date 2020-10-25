@@ -6,6 +6,12 @@ class ProductionDataController < ApplicationController
     redirect_to "/products/#{params[:product_id]}"
   end
 
+  def update
+    production_datum = ProductionDatum.find(params[:id])
+    production_datum.update(production_datum_params)
+    redirect_to product_path(params[:product_id])
+  end
+
   private
 
   def production_datum_params
