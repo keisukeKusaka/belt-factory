@@ -1,18 +1,29 @@
 .block
   .title
     顧客評価
-  - if user_department_and_datum?(2, @evaluation_datum)
-    = form_with(model: [@product, @evaluation_datum_new], local: true) do |form|
+  - if append_datum_form?(2, @evaluation_datum.id)
+    = form_with(model: [@product, @evaluation_datum], local: true) do |form|
       .comment-area
         = render partial: "form", locals: { form: form }
   - else
-    .comment-area
-      %textarea.comment-area__main-area{readonly: "readonly"}
-        = @evaluation_datum&.comment
-      -if @evaluation_datum&.image.present?
-        = image_tag @evaluation_datum&.image&.url, class: "comment-area__image-area"
-      .comment-area__sub-area
-        記入日：
-        %input.output{value: "#{@evaluation_datum&.updated_at&.strftime("%Y/%m/%d")}", readonly: "readonly"}
-        　担当者：
-        %input.output{value: "#{@evaluation_datum&.user&.name}", readonly: "readonly"}
+    = form_with(model: [@product, @evaluation_datum], local: true) do |form|
+      .comment-area
+        = form.text_area :comment, class: "comment-area__main-area comment-area__main-area--edit", id: "comment-area__main-area--evaluation"
+        -if @evaluation_datum&.image.present?
+          = image_tag @evaluation_datum&.image&.url, class: "comment-area__image-area"
+        = form.file_field :image , class: "image-btn image-btn--edit", id: "image-btn--evaluation"
+        .comment-area__sub-area
+          .date
+            記入日：
+            %input.output{value: "#{@evaluation_datum&.updated_at&.strftime("%Y/%m/%d")}", readonly: "readonly"}
+          .editor
+            担当者：
+            %input.output{value: "#{@evaluation_datum&.user&.name}", readonly: "readonly"}
+
+        - if append_edit_button?(2, @evaluation_datum&.id)
+          .comment-area__btn-area
+            %div{ class: "btn edit-btn", id: "edit-btn--evaluation", "data-datum" => "evaluation"}
+              内容の変更
+            %div{ class: "btn cancel-btn", id: "cancel-btn--evaluation"}
+              変更の中止
+            = form.submit "確定", method: :patch, class: "btn submit-btn submit-btn--edit", id: "submit-btn--evaluation"
