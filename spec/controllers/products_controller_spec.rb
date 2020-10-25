@@ -95,28 +95,37 @@ describe ProductsController do
   end
 
   describe "#show" do
-    before do
+    subject {
       get :show, params: { id: product.id }
-    end
+    }
 
     it '@productに期待される文字列が代入されている' do
+      subject
       expect(assigns(:product)).to eq Product.find(product.id)
     end
 
-    it 'product_datum(@product)が行われている' do
-      expect(assigns(:production_datum)).to eq product.production_datum
+    context 'productに紐づけられているproduction_datumのデータが存在する場合' do
+      it '@production_datumに@product.production_datumが代入されている' do
+        get :show, params: { id: product.id, production_datum: production_datum }
+        expect(assigns(:production_datum)).to eq product.production_datum
+      end
     end
 
-    it '@production_datum_newにProductionDatum.newが代入されている' do
-      expect(assigns(:production_datum_new)).to be_a_new(ProductionDatum)
-    end
+    context 'productに紐づけられているproduction_datumのデータが存在しない場合' do
+      it '@production_datumにProductionDatum.newが代入されている' do
+        subject
+        expect(assigns(:production_datum)).to be_a_new(ProductionDatum)
+      end
 
-    it '@inspection_datum_newにInspectionDatum.newが代入されている' do
-      expect(assigns(:inspection_datum_new)).to be_a_new(InspectionDatum)
-    end
+      it '@inspection_datumにInspectionDatum.newが代入されている' do
+        subject
+        expect(assigns(:inspection_datum)).to be_a_new(InspectionDatum)
+      end
 
-    it '@evaluation_datum_newにEvaluationDatum.newが代入されている' do
-      expect(assigns(:evaluation_datum_new)).to be_a_new(EvaluationDatum)
+      it '@evaluation_datumにEvaluationDatum.newが代入されている' do
+        subject
+        expect(assigns(:evaluation_datum)).to be_a_new(EvaluationDatum)
+      end
     end
   end
 
