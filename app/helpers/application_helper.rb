@@ -1,12 +1,21 @@
 module ApplicationHelper
-  def user_department_and_datum?(num, datum)
-    current_user.department_id == num && datum.blank? && @product.present?
+  def append_datum_form?(num, datum_id)
+    current_user.department_id == num && datum_id.blank?
   end
 
   def product_datum(product)
-    @production_datum = product.production_datum
-    @inspection_datum = product.inspection_datum
-    @evaluation_datum = product.evaluation_datum
+    @production_datum = product&.production_datum
+    @production_datum = ProductionDatum.new if @production_datum.blank?
+
+    @inspection_datum = product&.inspection_datum
+    @inspection_datum = InspectionDatum.new if @inspection_datum.blank?
+
+    @evaluation_datum = product&.evaluation_datum
+    @evaluation_datum = EvaluationDatum.new if @evaluation_datum.blank?
+  end
+
+  def append_edit_button?(num, datum_id)
+    current_user.department_id == num && datum_id.present?
   end
 
   def weight(product)
