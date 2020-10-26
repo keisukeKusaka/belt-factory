@@ -29,7 +29,9 @@ $(function () {
     // readonlyの解除
     $(`#comment-area__main-area--${datumCategory}`).attr(`readonly`, false);
     $(`#image-btn--${datumCategory}`).attr(`readonly`, false);
-    $(`.size-input--edit`).attr(`readonly`, false);
+    if (datumCategory == `inspection`) {
+      $(`.size-input--edit`).attr(`readonly`, false);
+    }
 
     // 「変更の中止」ボタンを押した時の処理
     $(`#cancel-btn--${datumCategory}`).on(`click`, function () {
@@ -41,14 +43,18 @@ $(function () {
       // readonlyの再設定
       $(`#comment-area__main-area--${datumCategory}`).attr(`readonly`, true);
       $(`#image-btn--${datumCategory}`).attr(`readonly`, true);
-      $(`.size-input--edit`).attr(`readonly`, true);
+      if (datumCategory == `inspection`) {
+        $(`.size-input--edit`).attr(`readonly`, true);
+      }
 
       // 元の値を再表示
       $(`#comment-area__main-area--${datumCategory}`).val(baseComment);
       $(`#image-btn--${datumCategory}`).val(baseImage);
-      $(`#size-input--length`).val(baseLength);
-      $(`#size-input--width`).val(baseWidth);
-      $(`#size-input--weight`).val(baseWeight);
+      if (datumCategory == `inspection`) {
+        $(`#size-input--length`).val(baseLength);
+        $(`#size-input--width`).val(baseWidth);
+        $(`#size-input--weight`).val(baseWeight);
+      }
     });
   });
 });
