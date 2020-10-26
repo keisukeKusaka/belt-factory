@@ -29,6 +29,9 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @production_datum_new = ProductionDatum.new
+    @inspection_datum_new = InspectionDatum.new
+    @evaluation_datum_new = EvaluationDatum.new
   end
 
   def edit

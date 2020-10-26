@@ -2,7 +2,7 @@ class InspectionDataController < ApplicationController
   load_and_authorize_resource
 
   def create
-    @inspection_datum = InspectionDatum.create(inspection_datum_params)
+    @inspection_datum_new = InspectionDatum.create(inspection_datum_params)
     redirect_to "/products/#{params[:product_id]}"
   end
 

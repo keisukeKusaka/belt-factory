@@ -6,7 +6,7 @@
       .comment-area
         = render partial: "form", locals: { form: form }
   - else
-    = form_with(model: [@product, @evaluation_datum], local: true) do |form|
+    = form_with(model: [@product, @evaluation_datum_new], local: true) do |form|
       .comment-area
         = form.text_area :comment, class: "comment-area__main-area comment-area__main-area--edit", id: "comment-area__main-area--evaluation"
         -if @evaluation_datum&.image.present?

@@ -2,7 +2,7 @@
   .title
     検査工程
   - if append_datum_form?(1, @inspection_datum.id)
-    = form_with(model: [@product, @inspection_datum], local: true) do |form|
+    = form_with(model: [@product, @inspection_datum_new], local: true) do |form|
       .comment-area
         .comment-area__size-area
           実寸法：
@@ -14,27 +14,6 @@
           kg
         = render partial: "form", locals: { form: form }
   - else
-    -# .comment-area
-    -#   .comment-area__size-area
-    -#     実寸法：
-    -#     %input.size-output{value: "#{@inspection_datum&.length}", readonly: "readonly"}
-    -#     m ✖️
-    -#     %input.size-output{value: "#{@inspection_datum&.width}", readonly: "readonly"}
-    -#     cm
-    -#     %input.size-output.weight{value: "#{@inspection_datum&.weight}", readonly: "readonly"}
-    -#     kg
-      -# %textarea.comment-area__main-area{readonly: "readonly"}
-      -#   = @inspection_datum_comment
-      -# -if @inspection_datum&.image.present?
-      -#   = image_tag @inspection_datum&.image&.url, class: "comment-area__image-area"
-      -# .comment-area__sub-area
-      -#   記入日：
-      -#   %input.output{value: "#{@inspection_datum&.updated_at&.strftime("%Y/%m/%d")}", readonly: "readonly"}
-      -#   担当者：
-      -#   %input.output{value: "#{@inspection_datum&.user&.name}", readonly: "readonly"}
-
-
-
     = form_with(model: [@product, @inspection_datum], local: true) do |form|
       .comment-area
         .comment-area__size-area
