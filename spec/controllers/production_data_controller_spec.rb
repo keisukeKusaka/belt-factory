@@ -50,4 +50,20 @@ describe ProductionDataController do
       end
     end
   end
+
+  describe "#update" do
+    subject {
+      production_datum_params = { comment: "コメントのアップデート" }
+      patch :update, params: { id: production_datum.id, product_id: product.id, user_id: user.id, production_datum: production_datum_params }
+    }
+
+    it 'productを更新できている' do
+      subject
+      expect(production_datum.reload.comment).to eq "コメントのアップデート"
+    end
+
+    it 'product_path(@product)に遷移する' do
+      expect(subject).to redirect_to(product_path(product))
+    end
+  end
 end

@@ -6,6 +6,12 @@ class InspectionDataController < ApplicationController
     redirect_to "/products/#{params[:product_id]}"
   end
 
+  def update
+    @inspection_datum = InspectionDatum.find(params[:id])
+    @inspection_datum.update(inspection_datum_params)
+    redirect_to product_path(params[:product_id])
+  end
+
   private
 
   def inspection_datum_params

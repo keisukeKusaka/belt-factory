@@ -50,4 +50,20 @@ describe EvaluationDataController do
       end
     end
   end
+
+  describe "#update" do
+    subject {
+      evaluation_datum_params = { comment: "コメントのアップデート" }
+      patch :update, params: { id: evaluation_datum.id, product_id: product.id, user_id: user.id, evaluation_datum: evaluation_datum_params }
+    }
+
+    it 'productを更新できている' do
+      subject
+      expect(evaluation_datum.reload.comment).to eq "コメントのアップデート"
+    end
+
+    it 'product_path(@product)に遷移する' do
+      expect(subject).to redirect_to(product_path(product))
+    end
+  end
 end

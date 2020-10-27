@@ -50,4 +50,20 @@ describe InspectionDataController do
       end
     end
   end
+
+  describe "#update" do
+    subject {
+      inspection_datum_params = { comment: "コメントのアップデート" }
+      patch :update, params: { id: inspection_datum.id, product_id: product.id, user_id: user.id, inspection_datum: inspection_datum_params }
+    }
+
+    it 'productを更新できている' do
+      subject
+      expect(inspection_datum.reload.comment).to eq "コメントのアップデート"
+    end
+
+    it 'product_path(@product)に遷移する' do
+      expect(subject).to redirect_to(product_path(product))
+    end
+  end
 end

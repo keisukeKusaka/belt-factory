@@ -14,8 +14,8 @@ Rails.application.routes.draw do
     collection do
       get "search"
     end
-    resources :production_data, only: :create
-    resources :inspection_data, only: :create
-    resources :evaluation_data, only: :create
+    resources :production_data, only: [:create, :update]
+    resources :inspection_data, only: [:create, :update]
+    resources :evaluation_data, only: [:create, :update]
   end
 end
