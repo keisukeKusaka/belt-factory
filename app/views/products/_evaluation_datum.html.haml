@@ -2,16 +2,35 @@
   .title
     顧客評価
   - if append_datum_form?(2, @evaluation_datum.id)
-    = form_with(model: [@product, @evaluation_datum], local: true) do |form|
-      .comment-area
-        = render partial: "form", locals: { form: form }
-  - else
     = form_with(model: [@product, @evaluation_datum_new], local: true) do |form|
       .comment-area
+        = form.text_area :comment, class: "comment-area__main-area", placeholder: "コメントを記入してください（必須）"
+        .comment-area__image-area
+          %label{for: "evaluation_datum_evaluation_images_attributes_0_image", class: "btn image-btn", id: "image-btn--evaluation", "data-datum" => "evaluation"}
+            画像を挿入
+            = form.file_field :image, type: 'file', name: "evaluation_datum[evaluation_images_attributes][0][image]", class: "hidden-field", id: "evaluation_datum_evaluation_images_attributes_0_image"
+        .comment-area__sub-area
+          = form.submit "確定", class: "btn submit-btn"
+
+  - else
+    = form_with(model: [@product, @evaluation_datum], local: true) do |form|
+      .comment-area#comment-area--evaluation
         = form.text_area :comment, class: "comment-area__main-area comment-area__main-area--edit", id: "comment-area__main-area--evaluation"
-        -if @evaluation_datum&.image.present?
-          = image_tag @evaluation_datum&.image&.url, class: "comment-area__image-area"
-        = form.file_field :image , class: "image-btn image-btn--edit", id: "image-btn--evaluation"
+
+        .comment-area__image-area#comment-area__image-area--evaluation#image-area--evaluation
+          - @evaluation_datum.evaluation_images.each_with_index do |evaluation_image, index|
+            %div{class: "evaluation-image", "data-index" => "#{index}", id: "item-image--evaluation_#{index}"}
+              %img{src: "#{evaluation_image.image}"}
+              %br
+              %div{class: "btn image-delete-btn image-delete-btn--evaluation", id: "delete-btn--evaluation_#{index}", "data-datum" => "evaluation"}
+                削除
+          = form.fields_for :evaluation_images do |image|
+            = image.check_box :_destroy, class: "hidden-destroy hidden-destroy--evaluation", data:{ index: "#{image.index}" }
+
+          %label{for: "evaluation_datum_evaluation_images_attributes_#{@evaluation_datum.evaluation_images.length}_image", class: "btn image-btn image-btn--edit", id: "image-btn--evaluation", "data-datum" => "evaluation"}
+            画像を挿入
+            = form.file_field :image, type: 'file', name: "evaluation_datum[evaluation_images_attributes][#{@evaluation_datum.evaluation_images.length}][image]", class: "hidden-field", id: "evaluation_datum_evaluation_images_attributes_#{@evaluation_datum.evaluation_images.length}_image"
+
         .comment-area__sub-area
           .date
             記入日：

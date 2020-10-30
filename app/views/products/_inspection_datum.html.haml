@@ -12,10 +12,16 @@
           cm
           = form.text_field :weight, class: "size-input weight", placeholder: "重量"
           kg
-        = render partial: "form", locals: { form: form }
+        = form.text_area :comment, class: "comment-area__main-area", placeholder: "コメントを記入してください（必須）"
+        .comment-area__image-area
+          %label{for: "inspection_datum_inspection_images_attributes_0_image", class: "btn image-btn", id: "image-btn--inspection", "data-datum" => "inspection"}
+            画像を挿入
+            = form.file_field :image, type: 'file', name: "inspection_datum[inspection_images_attributes][0][image]", class: "hidden-field", id: "inspection_datum_inspection_images_attributes_0_image"
+        .comment-area__sub-area
+          = form.submit "確定", class: "btn submit-btn"
   - else
     = form_with(model: [@product, @inspection_datum], local: true) do |form|
-      .comment-area
+      .comment-area#comment-area--inspection
         .comment-area__size-area
           実寸法：
           = form.text_field :length, class: "size-input size-input--edit", placeholder: "周長", id: "size-input--length"
@@ -26,16 +32,20 @@
           kg
 
         = form.text_area :comment, class: "comment-area__main-area comment-area__main-area--edit", id: "comment-area__main-area--inspection"
-        -if @inspection_datum&.image.present?
-          = image_tag @inspection_datum&.image&.url, class: "comment-area__image-area"
-        = form.file_field :image , class: "image-btn image-btn--edit", id: "image-btn--inspection"
-        .comment-area__sub-area
-          .date
-            記入日：
-            %input.output{value: "#{@inspection_datum&.updated_at&.strftime("%Y/%m/%d")}", readonly: "readonly"}
-          .editor
-            担当者：
-            %input.output{value: "#{@inspection_datum&.user&.name}", readonly: "readonly"}
+
+        .comment-area__image-area#comment-area__image-area--inspection#image-area--inspection
+          - @inspection_datum.inspection_images.each_with_index do |inspection_image, index|
+            %div{class: "inspection-image", "data-index" => "#{index}", id: "item-image--inspection_#{index}"}
+              %img{src: "#{inspection_image.image}"}
+              %br
+              %div{class: "btn image-delete-btn image-delete-btn--inspection", id: "delete-btn--inspection_#{index}", "data-datum" => "inspection"}
+                削除
+          = form.fields_for :inspection_images do |image|
+            = image.check_box :_destroy, class: "hidden-destroy hidden-destroy--inspection", data:{ index: "#{image.index}" }
+
+          %label{for: "inspection_datum_inspection_images_attributes_#{@inspection_datum.inspection_images.length}_image", class: "btn image-btn image-btn--edit", id: "image-btn--inspection", "data-datum" => "inspection"}
+            画像を挿入
+            = form.file_field :image, type: 'file', name: "inspection_datum[inspection_images_attributes][#{@inspection_datum.inspection_images.length}][image]", class: "hidden-field", id: "inspection_datum_inspection_images_attributes_#{@inspection_datum.inspection_images.length}_image"
 
         - if append_edit_button?(1, @inspection_datum&.id)
           .comment-area__btn-area
