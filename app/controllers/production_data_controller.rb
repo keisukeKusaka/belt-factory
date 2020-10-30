@@ -15,6 +15,6 @@ class ProductionDataController < ApplicationController
   private
 
   def production_datum_params
-    params.require(:production_datum).permit(:comment, :image, :created_at, production_images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id, product_id: params[:product_id])
+    params.require(:production_datum).permit(:comment, :created_at, production_images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id, product_id: params[:product_id])
   end
 end
