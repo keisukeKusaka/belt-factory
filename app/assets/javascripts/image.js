@@ -5,8 +5,6 @@ $(function () {
                     name="${category}_datum[${category}_images_attributes][${index}][image]" style="display:none"
                     id="${category}_datum_${category}_images_attributes_${index}_image" class="hidden-field">`;
     return html;
-
-    // console.log("buildInput実行");
   }
 
   // プレビュー画像を表示する関数
@@ -29,7 +27,7 @@ $(function () {
 
   // file_fieldとチェックボックスを非表示にするcss
   $(`.hidden-field`).hide();
-  // $(`.hidden-destroy`).hide();
+  $(`.hidden-destroy`).hide();
 
   // 画像にindexを割り振るための配列を用意
   let fileIndex = [0, 1, 2];
@@ -43,7 +41,6 @@ $(function () {
   lastIndex = $(`.production-image:last`).data(`index`);
   fileIndex.splice(0, lastIndex);
 
-  // console.log("get_lastIndex実行");
   // };
 
   // 画像を挿入する処理
@@ -51,15 +48,9 @@ $(function () {
     // データの種類を識別するためのカスタムデータ属性を取得
     let datumCategory = $(this).parent().attr(`data-datum`);
 
-    // get_lastIndex(datumCategory);
-
     // ファイルのブラウザ上でのURLを取得する
     let file = e.target.files[0];
     let blobUrl = window.URL.createObjectURL(file);
-
-    console.log(fileIndex[0]);
-    console.log(blobUrl);
-    console.log(datumCategory);
 
     // 画像のプレビューを表示する
     $(`#image-btn--${datumCategory}`).before(buildImage(fileIndex[0], blobUrl, datumCategory));
@@ -78,5 +69,38 @@ $(function () {
       $(`#image-btn--${datumCategory}`).hide();
       $(`#image-btn--${datumCategory}`).before(buildMessage(datumCategory));
     };
+  });
+
+  // 画像を削除する処理
+  $(document).on(`click`, `.image-delete-btn`, function () {
+    // データの種類を識別するためのカスタムデータ属性を取得
+    let datumCategory = $(this).attr(`data-datum`);
+
+    // 選択した画像を取得する
+    let target_image = $(this).parent();
+    // 選択した画像のindexを取得する
+    let target_index = $(target_image).data('index');
+
+    // 選択した画像が登録済みの場合、対応するチェックボックスにチェックする
+    let hiddenCheck = $(`input[data-index="${target_index}"].hidden-destroy--${datumCategory}`);
+    if (hiddenCheck) {
+      hiddenCheck.prop('checked', true)
+    };
+
+    // 選択した画像の表示を消去する
+    target_image.remove();
+    // 選択した画像と対応するfile_fieldを消去する
+    $(`#${datumCategory}_datum_${datumCategory}_images_attributes_${target_index}_image`).remove();
+
+    // 画像が3枚以下になったら入力ボタンを再表示する
+    if ($(`.${datumCategory}-image`).length <= 2) {
+      $(`#image-btn--${datumCategory}`).show();
+      $(`#image-count-message--${datumCategory}`).remove();
+    };
+
+    // 画像が全て消されてもfile_fieldがゼロ個にならない様にする（画像表示が全て消されたら入力欄を復活させる）
+    if ($(`.${datumCategory}-image`).length == 0) {
+      $(`#image-btn--${datumCategory}`).append(buildInput(fileIndex[0]));
+    }
   });
 });
