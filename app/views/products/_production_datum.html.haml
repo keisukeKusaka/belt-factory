@@ -27,7 +27,7 @@
             %div{class: "production-image", "data-index" => "#{index}", id: "item-image--production_#{index}"}
               %img{src: "#{production_image.image}"}
               %br
-              %div{class: "btn image-delete-btn", id: "delete-btn--production_#{index}", "data-datum" => "production"}
+              %div{class: "btn image-delete-btn image-delete-btn--production", id: "delete-btn--production_#{index}", "data-datum" => "production"}
                 削除
           = form.fields_for :production_images do |image|
             = image.check_box :_destroy, class: "hidden-destroy hidden-destroy--production", data:{ index: "#{image.index}" }

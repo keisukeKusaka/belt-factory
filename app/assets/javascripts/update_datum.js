@@ -3,6 +3,7 @@ $(function () {
   $(`.image-btn--edit`).hide();
   $(`.cancel-btn`).hide();
   $(`.submit-btn--edit`).hide();
+  $(`.image-delete-btn`).hide();
 
   // readonlyの設定
   $(`.comment-area__main-area--edit`).attr(`readonly`, true);
@@ -37,6 +38,7 @@ $(function () {
     };
     $(`#cancel-btn--${datumCategory}`).show();
     $(`#submit-btn--${datumCategory}`).show();
+    $(`.image-delete-btn--${datumCategory}`).show();
 
     // readonlyの解除
     $(`#comment-area__main-area--${datumCategory}`).attr(`readonly`, false);
@@ -52,6 +54,7 @@ $(function () {
       $(`#image-count-message--${datumCategory}`).remove();
       $(`#cancel-btn--${datumCategory}`).hide();
       $(`#submit-btn--${datumCategory}`).hide();
+      $(`.image-delete-btn--${datumCategory}`).hide();
 
       // readonlyの再設定
       $(`#comment-area__main-area--${datumCategory}`).attr(`readonly`, true);
