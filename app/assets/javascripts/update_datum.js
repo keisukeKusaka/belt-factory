@@ -9,6 +9,14 @@ $(function () {
   $(`.image-btn--edit`).attr(`readonly`, true);
   $(`.size-input--edit`).attr(`readonly`, true);
 
+  // 3枚以上は画像挿入できない表示をする関数
+  let buildMessage = (category) => {
+    let html = `<div class = "image-count-message" id = "image-count-message--${category}">
+                  これ以上挿入できません
+                </div>`
+    return html
+  }
+
   //「内容の変更」ボタンを押した時の処理
   $(`.edit-btn`).on(`click`, function () {
     // データの種類を識別するためのカスタムデータ属性を取得
@@ -22,7 +30,11 @@ $(function () {
     let baseWeight = $(`#size-input--weight`).val();
 
     // 隠し要素の表示
-    $(`#image-btn--${datumCategory}`).show();
+    if ($(`.${datumCategory}-image`).length < 3) {
+      $(`#image-btn--${datumCategory}`).show();
+    } else {
+      $(`#image-btn--${datumCategory}`).before(buildMessage(datumCategory));
+    };
     $(`#cancel-btn--${datumCategory}`).show();
     $(`#submit-btn--${datumCategory}`).show();
 
@@ -37,6 +49,7 @@ $(function () {
     $(`#cancel-btn--${datumCategory}`).on(`click`, function () {
       // 要素を再び隠す
       $(`#image-btn--${datumCategory}`).hide();
+      $(`#image-count-message--${datumCategory}`).remove();
       $(`#cancel-btn--${datumCategory}`).hide();
       $(`#submit-btn--${datumCategory}`).hide();
 
