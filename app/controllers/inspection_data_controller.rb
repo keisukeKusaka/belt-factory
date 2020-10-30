@@ -15,6 +15,6 @@ class InspectionDataController < ApplicationController
   private
 
   def inspection_datum_params
-    params.require(:inspection_datum).permit(:length, :width, :weight, :comment, :image, :created_at).merge(user_id: current_user.id, product_id: params[:product_id])
+    params.require(:inspection_datum).permit(:length, :width, :weight, :comment, :created_at, inspection_images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id, product_id: params[:product_id])
   end
 end

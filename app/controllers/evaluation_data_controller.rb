@@ -15,6 +15,6 @@ class EvaluationDataController < ApplicationController
   private
 
   def evaluation_datum_params
-    params.require(:evaluation_datum).permit(:comment, :image, :created_at).merge(user_id: current_user.id, product_id: params[:product_id])
+    params.require(:evaluation_datum).permit(:comment, :created_at, evaluation_images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id, product_id: params[:product_id])
   end
 end
