@@ -27,10 +27,10 @@
             %div{class: "production-image", "data-index" => "#{index}", id: "item-image--production_#{index}"}
               %img{src: "#{production_image.image}"}
               %br
-              %div{class: "btn image-delete-btn", id: "delete-btn--production_#{index}"}
+              %div{class: "btn image-delete-btn", id: "delete-btn--production_#{index}", "data-datum" => "production"}
                 削除
           = form.fields_for :production_images do |image|
-            = image.check_box :_destroy, class: "hidden-destroy", data:{ index: "#{image.index}" }
+            = image.check_box :_destroy, class: "hidden-destroy hidden-destroy--production", data:{ index: "#{image.index}" }
 
           -# 追加したい画像を選択・表示するための記述
           %label{for: "production_datum_production_images_attributes_#{@production_datum.production_images.length}_image", class: "btn image-btn image-btn--edit", id: "image-btn--production", "data-datum" => "production"}
