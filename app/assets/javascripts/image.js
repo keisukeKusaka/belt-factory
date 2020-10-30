@@ -67,7 +67,7 @@ $(function () {
     fileIndexes[datumCategory].push(fileIndexes[datumCategory][fileIndexes[datumCategory].length - 1] + 1);
 
     // 入力ボタンが対象としているフォームのidを切り替える
-    $(`#image-btn--${datumCategory}`).attr(`for`, `production_datum_production_images_attributes_${fileIndexes[datumCategory][0]}_image`)
+    $(`#image-btn--${datumCategory}`).attr(`for`, `${datumCategory}_datum_${datumCategory}_images_attributes_${fileIndexes[datumCategory][0]}_image`)
 
     // 画像が3枚になったら入力ボタンを非表示にする
     if ($(`.${datumCategory}-image`).length >= 3) {
