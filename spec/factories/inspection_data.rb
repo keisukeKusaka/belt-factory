@@ -4,7 +4,6 @@ FactoryBot.define do
     width       {400}
     weight      {144.0}
     comment     {"コメントテスト"}
-    image       {}
     product
     user
   end

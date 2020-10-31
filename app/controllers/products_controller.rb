@@ -32,6 +32,10 @@ class ProductsController < ApplicationController
     @production_datum_new = ProductionDatum.new
     @inspection_datum_new = InspectionDatum.new
     @evaluation_datum_new = EvaluationDatum.new
+
+    @production_datum_new.production_images.new
+    @inspection_datum_new.inspection_images.new
+    @evaluation_datum_new.evaluation_images.new
   end
 
   def edit

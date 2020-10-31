@@ -4,14 +4,33 @@
   - if append_datum_form?(1, @production_datum.id)
     = form_with(model: [@product, @production_datum_new], local: true) do |form|
       .comment-area
-        = render partial: "form", locals: { form: form }
+        = form.text_area :comment, class: "comment-area__main-area", placeholder: "コメントを記入してください（必須）"
+        .comment-area__image-area
+          %label{for: "production_datum_production_images_attributes_0_image", class: "btn image-btn", id: "image-btn--production", "data-datum" => "production"}
+            画像を挿入
+            = form.file_field :image, type: 'file', name: "production_datum[production_images_attributes][0][image]", class: "hidden-field", id: "production_datum_production_images_attributes_0_image"
+        .comment-area__sub-area
+          = form.submit "確定", class: "btn submit-btn"
+
   - else
     = form_with(model: [@product, @production_datum], local: true) do |form|
-      .comment-area
+      .comment-area#comment-area--production
         = form.text_area :comment, class: "comment-area__main-area comment-area__main-area--edit", id: "comment-area__main-area--production"
-        -if @production_datum&.image.present?
-          = image_tag @production_datum&.image&.url, class: "comment-area__image-area"
-        = form.file_field :image , class: "image-btn image-btn--edit", id: "image-btn--production"
+
+        .comment-area__image-area#comment-area__image-area--production#image-area--production
+          - @production_datum.production_images.each_with_index do |production_image, index|
+            %div{class: "production-image", "data-index" => "#{index}", id: "item-image--production_#{index}"}
+              %img{src: "#{production_image.image}"}
+              %br
+              %div{class: "btn image-delete-btn image-delete-btn--production", id: "delete-btn--production_#{index}", "data-datum" => "production"}
+                削除
+          = form.fields_for :production_images do |image|
+            = image.check_box :_destroy, class: "hidden-destroy hidden-destroy--production", data:{ index: "#{image.index}" }
+
+          %label{for: "production_datum_production_images_attributes_#{@production_datum.production_images.length}_image", class: "btn image-btn image-btn--edit", id: "image-btn--production", "data-datum" => "production"}
+            画像を挿入
+            = form.file_field :image, type: 'file', name: "production_datum[production_images_attributes][#{@production_datum.production_images.length}][image]", class: "hidden-field", id: "production_datum_production_images_attributes_#{@production_datum.production_images.length}_image"
+
         .comment-area__sub-area
           .date
             記入日：
