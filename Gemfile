@@ -74,3 +74,7 @@ gem 'carrierwave', '~> 2.0'
 gem 'mini_magick'
 gem 'cancancan'
 gem 'kaminari'
+
+group :production do
+  gem 'unicorn', '5.4.1'
+end
