@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: belt-factory_production
-  username: belt-factory
-  password: <%= ENV['BELT-FACTORY_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
