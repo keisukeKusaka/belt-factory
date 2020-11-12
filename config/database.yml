@@ -52,4 +52,4 @@ production:
   database: belt-factory_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  socket: /usr/bin/mysql_config-64
+  socket: /var/lib/mysql/mysql.sock
