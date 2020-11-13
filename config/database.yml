@@ -48,10 +48,6 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  # database: belt-factory_production
-  # username: root
-  # password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
   adapter: mysql2
   encoding: utf8
