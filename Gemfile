@@ -67,6 +67,10 @@ group :test do
   gem 'faker'
 end
 
+group :production do
+  gem 'unicorn', '5.4.1'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -79,7 +83,4 @@ gem 'carrierwave', '~> 2.0'
 gem 'mini_magick'
 gem 'cancancan'
 gem 'kaminari'
-
-group :production do
-  gem 'unicorn', '5.4.1'
-end
+gem 'fog-aws'
