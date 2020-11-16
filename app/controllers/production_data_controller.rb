@@ -8,8 +8,8 @@ class ProductionDataController < ApplicationController
 
   def update
     @production_datum = ProductionDatum.find(params[:id])
-    binding.pry
     @production_datum.update(production_datum_params)
+    logger.debug @production_datum.errors.inspect
     redirect_to product_path(params[:product_id])
   end
 
