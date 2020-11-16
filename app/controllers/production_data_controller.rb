@@ -10,6 +10,7 @@ class ProductionDataController < ApplicationController
     @production_datum = ProductionDatum.find(params[:id])
     @production_datum.update(production_datum_params)
     logger.debug @production_datum.errors.inspect
+    logger.debug "test_test"
     redirect_to product_path(params[:product_id])
   end
 
