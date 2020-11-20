@@ -1,7 +1,8 @@
 .main-content__product-form
-  製品情報の変更
+  .title
+    設計変更
   = form_with(model: @product, local: true) do |form|
-    .form#product_design
+    .form#product_design.clearfix
       .info
         製品番号
         = form.text_field :number, class: "info__input", readonly: "readonly", id: "number", value: @product.number
@@ -21,6 +22,8 @@
         .info-size__weight
           %input#calculation-weight.info__output{type: "text",readonly: "readonly", value: weight(@product)}
           kg
-      = form.submit "確定", class: "submit-btn"
-  = link_to "削除", product_path(@product), method: :delete
-  = link_to "キャンセル", product_path(@product)
+      = form.submit "確定", class: "btn"
+  .sub-btn-area
+    = link_to "登録削除", product_path(@product), method: :delete, class: "delete-btn btn"
+    %br
+    = link_to "変更のキャンセル", product_path(@product), class: "btn"

@@ -1,8 +1,7 @@
 .side-bar__search-form
   = form_with(url: search_products_path, local: true, method: :get) do |form|
     .search.clearfix
-      製品番号
-      = form.text_field :number, class: "search__input"
-      = form.submit "検索", class: "search__btn"
-  - if current_user.department_id == 2
-    = link_to "製品を新規登録", new_product_path, class: 'new_product-btn'
+      .search__input
+        製品番号
+        = form.text_field :number, class: "input-form"
+      = form.submit "検索", class: "search__btn btn"

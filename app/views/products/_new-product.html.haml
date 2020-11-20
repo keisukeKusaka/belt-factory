@@ -1,16 +1,14 @@
-.main-content__product-form
-  新規登録
+.main-content__product-form.clearfix
+  .title
+    新規登録
   = form_with(model: @product, local: true) do |form|
-    .form#product_design
+    .form#product_design.clearfix
       .info
         製品番号
         = form.text_field :number, class: "info__input", readonly: "readonly", id: "number", value: @new_number
       .info
         発注先
         = form.select :client_id, options_for_select(@client.map{|client|[client[:campany], client[:id], {}]}, ""), {}, {class: "info__input", id: "campany"}
-
-      %button{ type: "button", class: "autfill-btn" }
-        前回品と同設計で入力
       .info
         材質
         = form.select :material_id, options_for_select(@material.map{|material|[material[:name], material[:id], {"basis_weight"=>material[:basis_weight]}]}, ""), {}, {class: "info__input"}
@@ -24,5 +22,4 @@
         .info-size__weight
           %input#calculation-weight.info__output{type: "text",readonly: "readonly"}
           kg
-      = form.submit "登録", class: "submit-btn"
-  = link_to "ホームへ戻る", root_path, class: "root-path"
+      = form.submit "登録", class: "btn"
