@@ -1,9 +1,9 @@
-$(function(){
+$(function () {
   let tabs = $(".menu__tab");
-  function tabSwitch(){
-    $(".active").removeClass("active");
-    $(this).addClass("active");
-    
+  function tabSwitch() {
+    $(".active-tab").removeClass("active-tab");
+    $(this).addClass("active-tab");
+
     const index = tabs.index(this);
     $(".content").removeClass("show").eq(index).addClass("show");
   };
