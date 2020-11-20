@@ -2,7 +2,14 @@
   box-sizing: border-box;
 }
 
-a {
+.clearfix:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+a:link, a:visited, a:hover, a:active {
+  color: black;
   text-decoration: none;
 }
 
@@ -12,13 +19,13 @@ a {
 }
 
 .btn {
-  border: black 1px solid;
+  border: black 1.5px solid;
   background-color: gainsboro;
 }
 
 .side-bar {
   overflow-y: scroll;
-  background-color: gray;
+  background-color: lightgray;
   width: 300px;
   min-width: 300px;
   height: 100vh;
@@ -26,11 +33,19 @@ a {
     background-color: orange;
     width: 260px;
     margin: 10px 20px;
-    border: black 2px solid;
+    border: black 1.5px solid;
     padding: 10px 10px;
     .search{
       &__input {
-        width: 150px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        &:after {
+          content: none;
+        }
+        .input-form {
+          width: 150px;
+        }
       }
       &__btn{
         float: right;
@@ -41,7 +56,7 @@ a {
     background-color: lightsalmon;
     width: 260px;
     margin: 10px 20px;
-    border: black 2px solid;
+    border: black 1.5px solid;
     padding: 10px 10px;
     .info{
       justify-content: space-between;
@@ -49,45 +64,43 @@ a {
       margin-bottom: 10px;
       &__output{
         background-color: white;
-        border: black 1px solid;
+        border: black 1.5px solid;
         width: 150px;
         text-align: center;
       }
     }
     .info-size{
       &__size{
-        justify-content: space-between;
+        float: right;
         display: flex;
         margin-bottom: 10px;
       }
       &__weight{
         display: flex;
         float: right;
+        margin-right: 5px;
       }
       .output{
         background-color: white;
-        border: black 1px solid;
+        border: black 1.5px solid;
         width: 80px;
         text-align: right;
       }
     }
-
-  }
-  &__user-name{
-    background-color: orange;
-    width: 260px;
-    margin: 10px 20px;
-    border: black 2px solid;
-    padding: 10px 10px;
-    .info{
-      float: right;
+    .edit-btn {
+      display: flex;
+      margin-top: 10px;
+      .comment {
+        margin-left: 10px;
+        font-size: 14px;
+      }
     }
   }
 }
 
 .main-content {
   overflow: scroll;
-  background-color: lightgrey;
+  background-color: whitesmoke;
   width: calc(100vw - 300px);
   min-width: 720px;
   height: 100vh;
@@ -105,13 +118,13 @@ a {
     line-height: 40px;
     &__tab{
       width: 50%;
-      border: black 2px solid;
+      border: black 1.5px solid;
       text-align: center;
     }
-    .active{
+    .active-tab{
       color: black;
     }
-    :not(.active){
+    :not(.active-tab){
       color: grey;
     }
     #manufacturing{
@@ -124,7 +137,7 @@ a {
   }
 
   .contents{
-    border: black 2px solid;
+    border: black 1.5px solid;
     width: 100%;
     &__manufacturing{
       background-color: yellowgreen;
@@ -155,7 +168,7 @@ a {
     width: 120px;
     line-height: 30px;
     text-align: center;
-    border: black 1px solid;
+    border: black 1.5px solid;
     margin-bottom: 5px;
   }
   .comment-area{
@@ -168,7 +181,7 @@ a {
       }
       .size-output{
         background-color: white;
-        border: black 1px solid;
+        border: black 1.5px solid;
         width: 80px;
         text-align: right;
       }
@@ -180,13 +193,22 @@ a {
       width: 100%;
       height: 150px;
       background-color: white;
-      border: black 1px solid;
+      border: black 1.5px solid;
       margin-bottom: 5px;
       overflow: scroll;
     }
     &__image-area{
-      border: black 1px solid;
+      display: flex;
       margin-bottom: 5px;
+      .image-src {
+        border: black 1.5px solid;
+
+        margin: 0 5px 5px 0;
+      }
+      .image-delete-btn {
+        margin-bottom: 5px;
+        float: right;
+      }
     }
     .image-btn{
       margin-bottom: 5px;
@@ -195,7 +217,7 @@ a {
       display: flex;
       .output{
         background-color: white;
-        border: black 1px solid;
+        border: black 1.5px solid;
         width: 200px;
         text-align: center;
       }
