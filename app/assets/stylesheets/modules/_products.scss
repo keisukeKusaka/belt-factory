@@ -13,7 +13,15 @@ a:link, a:visited, a:hover, a:active {
   text-decoration: none;
 }
 
+body {
+  background-color: lightgray;
+  height: 100%
+}
+
 .wrapper{
+  max-width: 1200px;
+  min-width: 1000px;
+  margin: 0 auto;
   font-size: 18px;
   display: flex;
 }
@@ -26,9 +34,10 @@ a:link, a:visited, a:hover, a:active {
 .side-content {
   overflow-y: scroll;
   background-color: lightgray;
-  width: 30%;
+  width: 25%;
   min-width: 300px;
-  height: 100vh;
+  min-height: 300px;
+  height: calc(100vh - 152px);
   .side-bar {
     float: right;
     &__search-form {
@@ -104,12 +113,12 @@ a:link, a:visited, a:hover, a:active {
 .main-content {
   overflow: scroll;
   background-color: whitesmoke;
-  width: 70%;
-  min-width: 720px;
-  height: 100vh;
-
+  width: 75%;
+  min-width: 650px;
+  min-height: 300px;
+  height: calc(100vh - 152px);
   &__product-data{
-    margin: 10px;
+    margin: 10px auto;
     width: calc(100% - 20px);
     height: calc(100% - 20px);
     min-width: 650px;
@@ -136,7 +145,6 @@ a:link, a:visited, a:hover, a:active {
     #sales{
       background-color: pink;
     }
-
   }
 
   .contents{
@@ -147,13 +155,11 @@ a:link, a:visited, a:hover, a:active {
     }
     &__sales{
       background-color: pink;
-      height: 100%;
-      padding: 10px;
     }
 
     .content.show{
       display: block;
-      overflow: scroll;
+
       height: 100%;
       padding: 10px;
     }
