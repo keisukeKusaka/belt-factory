@@ -23,76 +23,79 @@ a:link, a:visited, a:hover, a:active {
   background-color: gainsboro;
 }
 
-.side-bar {
+.side-content {
   overflow-y: scroll;
   background-color: lightgray;
-  width: 300px;
+  width: 30%;
   min-width: 300px;
   height: 100vh;
-  &__search-form {
-    background-color: orange;
-    width: 260px;
-    margin: 10px 20px;
-    border: black 1.5px solid;
-    padding: 10px 10px;
-    .search{
-      &__input {
-        display: flex;
+  .side-bar {
+    float: right;
+    &__search-form {
+      background-color: orange;
+      width: 260px;
+      margin: 10px 20px;
+      border: black 1.5px solid;
+      padding: 10px 10px;
+      .search{
+        &__input {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+          &:after {
+            content: none;
+          }
+          .input-form {
+            width: 150px;
+          }
+        }
+        &__btn{
+          float: right;
+        }
+      }
+    }
+    &__product-design {
+      background-color: lightsalmon;
+      width: 260px;
+      margin: 10px 20px;
+      border: black 1.5px solid;
+      padding: 10px 10px;
+      .info{
         justify-content: space-between;
+        display: flex;
         margin-bottom: 10px;
-        &:after {
-          content: none;
-        }
-        .input-form {
+        &__output{
+          background-color: white;
+          border: black 1.5px solid;
           width: 150px;
+          text-align: center;
         }
       }
-      &__btn{
-        float: right;
+      .info-size{
+        &__size{
+          float: right;
+          display: flex;
+          margin-bottom: 10px;
+        }
+        &__weight{
+          display: flex;
+          float: right;
+          margin-right: 5px;
+        }
+        .output{
+          background-color: white;
+          border: black 1.5px solid;
+          width: 80px;
+          text-align: right;
+        }
       }
-    }
-  }
-  &__product-design {
-    background-color: lightsalmon;
-    width: 260px;
-    margin: 10px 20px;
-    border: black 1.5px solid;
-    padding: 10px 10px;
-    .info{
-      justify-content: space-between;
-      display: flex;
-      margin-bottom: 10px;
-      &__output{
-        background-color: white;
-        border: black 1.5px solid;
-        width: 150px;
-        text-align: center;
-      }
-    }
-    .info-size{
-      &__size{
-        float: right;
+      .edit-btn {
         display: flex;
-        margin-bottom: 10px;
-      }
-      &__weight{
-        display: flex;
-        float: right;
-        margin-right: 5px;
-      }
-      .output{
-        background-color: white;
-        border: black 1.5px solid;
-        width: 80px;
-        text-align: right;
-      }
-    }
-    .edit-btn {
-      display: flex;
-      margin-top: 10px;
-      .comment {
-        margin-left: 10px;
-        font-size: 14px;
+        margin-top: 10px;
+        .comment {
+          margin-left: 10px;
+          font-size: 14px;
+        }
       }
     }
   }
@@ -101,7 +104,7 @@ a:link, a:visited, a:hover, a:active {
 .main-content {
   overflow: scroll;
   background-color: whitesmoke;
-  width: calc(100vw - 300px);
+  width: 70%;
   min-width: 720px;
   height: 100vh;
 
@@ -109,8 +112,8 @@ a:link, a:visited, a:hover, a:active {
     margin: 10px;
     width: calc(100% - 20px);
     height: calc(100% - 20px);
-    min-width: 700px;
-    max-width: 1000px;
+    min-width: 650px;
+    max-width: 800px;
   }
   .menu{
     display: flex;
