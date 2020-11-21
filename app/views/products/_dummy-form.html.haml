@@ -1,0 +1,56 @@
+.main-content__product-data
+  .menu
+    #manufacturing.menu__tab.active-tab
+      製造情報
+    #sales.menu__tab
+      営業情報
+
+  .contents
+    .contents__manufacturing.content.show
+      .block
+        .title
+          製作工程
+        .comment-area#comment-area--production
+          %input.comment-area__main-area#comment-area__main-area--production{ readonly: "readonly" }
+          .comment-area__sub-area
+            .date
+              記入日：
+              %input.output{ readonly: "readonly" }
+            .editor
+              担当者：
+              %input.output{ readonly: "readonly" }
+
+      .block
+        .title
+          検査工程
+        .comment-area#comment-area--inspection
+          .comment-area__size-area
+            実寸法：
+            %input.size-input#size-input--length{ readonly: "readonly" }
+            m ×
+            %input.size-input#size-input--width{ readonly: "readonly" }
+            cm
+            %input.size-input.weight#size-input--weight{ readonly: "readonly" }
+            kg
+          %input.comment-area__main-area#comment-area__main-area--production{ readonly: "readonly" }
+          .comment-area__sub-area
+            .date
+              記入日：
+              %input.output{ readonly: "readonly" }
+            .editor
+              担当者：
+              %input.output{eadonly: "readonly"}
+
+    .contents__sales.content
+      .block
+        .title
+          顧客評価
+        .comment-area#comment-area--evaluation
+          %input.comment-area__main-area#comment-area__main-area--evaluation{ readonly: "readonly" }
+          .comment-area__sub-area
+            .date
+              記入日：
+              %input.output{ readonly: "readonly" }
+            .editor
+              担当者：
+              %input.output{ readonly: "readonly" }

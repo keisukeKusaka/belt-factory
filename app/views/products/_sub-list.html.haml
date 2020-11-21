@@ -1,7 +1,7 @@
 .side-bar__sub-list
   .sub-list
-    = @product_campany
-    の製品一覧
+    = @product&.client&.campany
+    の製品
     %table.table
       %tbody
         - @products.each do |product|
@@ -9,5 +9,3 @@
             %td
               .number
                 = product.number
-    .paginate
-      = paginate(@products)

@@ -12,11 +12,19 @@
     設計寸法
     .info-size__size
       %input.output{value: "#{@product&.length}", readonly: "readonly"}
-      m ✖️
+      m ×
       %input.output{value: "#{@product&.width}", readonly: "readonly"}
       cm
     .info-size__weight
       %input.output{value: "#{weight(@product)}", readonly: "readonly"}
       kg
-  - if current_user.department_id == 2 && @product&.production_datum == nil
-    = link_to "編集", edit_product_path(@product), class: 'new_product-btn'
+  - if user_signed_in? && current_user.department_id == 2 && @product.present?
+    .edit-btn.clearfix
+      -if @product&.production_datum == nil
+        = link_to "設計変更", edit_product_path(@product), class: 'btn'
+      - else
+        = link_to "設計変更", "#", class: 'btn', disabled: "disabled"
+        .comment
+          ※製作済みのため
+          %br
+          設計変更できません
