@@ -1,0 +1,52 @@
+.header
+  .header__content.clearfix
+    .menu-contents
+      .title
+        = link_to root_path do
+          .title__main
+            Belt-Industrial
+          .title__sub
+            特注コンベアベルト 製品管理
+      .btn-area.clearfix
+        = link_to "製品検索", root_path, class: "menu-btn btn header-btn"
+        - if user_signed_in?
+          = link_to "製品一覧", lists_index_path, class: "menu-btn btn header-btn"
+          - if current_user.department_id == 2
+            = link_to "新規登録", new_product_path, class: "menu-btn btn header-btn"
+
+    .user-contents.clearfix
+      - if user_signed_in?
+        .test-user
+          テストアカウント切り替え
+          %br
+          - if current_user.number == "990001"
+            = link_to "営業部アカウント", users_change_to_sales_guest_path, method: :post, class: "btn header-btn"
+          - if current_user.number == "990002"
+            = link_to "製造部アカウント", users_change_to_production_guest_path, method: :post, class: "btn header-btn"
+        .login-user
+          .info
+            .info__output
+              = current_user.department.name
+              %br
+              = current_user.name
+          .logout-btn
+            = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn header-btn"
+
+      - else
+        .test-user
+          テストアカウントでログイン
+          %br
+          = link_to "製造部アカウント", users_production_guest_sign_in_path, method: :post, class: "btn header-btn"
+          %br
+          = link_to "営業部アカウント", users_sales_guest_sign_in_path, method: :post, class: "btn header-btn"
+
+        = form_with(model: @user, url: user_session_path, local: true) do |form|
+          .login-form.clearfix
+            .form.clearfix
+              社員番号
+              = form.text_field :number, autofocus: true, class: "form__input"
+            .form.clearfix
+              パスワード
+              = form.password_field :password, autocomplete: "off", class: "form__input"
+            .login-btn
+              = form.submit "ログイン", class: 'btn header-btn'

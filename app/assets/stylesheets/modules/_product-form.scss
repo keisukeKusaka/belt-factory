@@ -1,30 +1,57 @@
 .main-content{
   &__product-form{
     background-color: lightsalmon;
-    width: 500px;
+    width: 300px;
     margin: 10px 20px;
-    border: black 2px solid;
+    border: black 1.5px solid;
     padding: 10px 10px;
-    .info{
-      justify-content: space-between;
-      display: flex;
-      margin-bottom: 10px;
+    .title {
+      text-align: center;
+      line-height: 36px;
     }
-    .info-size{
-      &__size{
+    .form {
+      .info{
         justify-content: space-between;
         display: flex;
         margin-bottom: 10px;
+        &__input {
+          width: 175px;
+          text-align: center;
+        }
       }
-      &__weight{
-        display: flex;
+      .info-size{
+        margin-bottom: 10px;
+        &__size{
+          display: flex;
+          margin-bottom: 10px;
+          float: right;
+          .input {
+            width: 100px;
+            text-align: right;
+            border: black 1.5px solid;
+          }
+        }
+        &__weight{
+          display: flex;
+          float: right;
+          margin-right: 5px;
+          .info__output{
+            border: black 1.5px solid;
+            width: 80px;
+            text-align: right;
+          }
+        }
+      }
+      .btn {
         float: right;
       }
-      .output{
-        background-color: white;
-        border: black 1px solid;
-        width: 80px;
-        text-align: right;
+    }
+    .sub-btn-area {
+      margin-top: 10px;
+
+      .delete-btn {
+        margin-bottom: 5px;
+        background-color: burlywood;
       }
     }
   }
