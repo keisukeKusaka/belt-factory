@@ -5,7 +5,7 @@
     = form_with(model: [@product, @production_datum_new], local: true) do |form|
       .comment-area
         = form.text_area :comment, class: "comment-area__main-area", placeholder: "コメントを記入してください（必須）"
-        .comment-area__image-area
+        .comment-area__image-area#comment-area__image-area--production#image-area--production.clearfix
         %label{for: "production_datum_production_images_attributes_0_image", class: "btn image-btn", id: "image-btn--production", "data-datum" => "production"}
           画像を挿入
           = form.file_field :image, type: 'file', name: "production_datum[production_images_attributes][0][image]", class: "hidden-field production-file-field", id: "production_datum_production_images_attributes_0_image"
