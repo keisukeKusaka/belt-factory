@@ -10,7 +10,7 @@ $(function () {
   // プレビュー画像を表示する関数
   let buildImage = (index, url, category) => {
     let html = `<div class = "${category}-image" data-index = "${index}" id="item-image--${category}_${index}">
-                  <img src = "${url}" width = "200px">
+                  <img src = "${url}" width = "200px" height = "200px" class = "image-src">
                   </br>
                   <div class = "btn image-delete-btn image-delete-btn--${category}" id = "delete-btn--${category}_${index}" data-datum = "${category}">
                     削除
@@ -32,13 +32,13 @@ $(function () {
   $(`.hidden-destroy`).hide();
 
   // 各データ毎の画像にindexを割り振るための配列を用意
-  let productionIndex = [0, 1, 2]
+  let productionIndex = [0, 1, 2, 3]
   productionIndex.splice(0, productionIndex.splice(0, $(`.production-image:last`).data(`index`) + 1))
 
-  let inspectionIndex = [0, 1, 2]
+  let inspectionIndex = [0, 1, 2, 3]
   inspectionIndex.splice(0, inspectionIndex.splice(0, $(`.inspection-image:last`).data(`index`) + 1))
 
-  let evaluationIndex = [0, 1, 2]
+  let evaluationIndex = [0, 1, 2, 3]
   evaluationIndex.splice(0, evaluationIndex.splice(0, $(`.evaluation-image:last`).data(`index`) + 1))
 
   // 各データに対するindexを取得
@@ -58,7 +58,7 @@ $(function () {
     let blobUrl = window.URL.createObjectURL(file);
 
     // 画像のプレビューを表示する
-    $(`#image-btn--${datumCategory}`).before(buildImage(fileIndexes[datumCategory][0], blobUrl, datumCategory));
+    $(`#image-area--${datumCategory}`).append(buildImage(fileIndexes[datumCategory][0], blobUrl, datumCategory));
     // fileIndexの先頭の数字を使って新しくinputを作る
     $(`#image-btn--${datumCategory}`).append(buildInput((fileIndexes[datumCategory][0] + 1), datumCategory));
 
