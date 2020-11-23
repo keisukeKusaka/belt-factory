@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit]
 
   def index
+    @products = Product.includes(:production_datum, :inspection_datum, :evaluation_datum, :material, :client).order("id DESC").page(params[:page]).per(10)
   end
 
   def new
