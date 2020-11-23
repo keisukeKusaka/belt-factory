@@ -18,5 +18,4 @@ Rails.application.routes.draw do
     resources :inspection_data, only: [:create, :update]
     resources :evaluation_data, only: [:create, :update]
   end
-  get 'lists/index'
 end
