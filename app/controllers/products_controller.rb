@@ -22,8 +22,10 @@ class ProductsController < ApplicationController
 
   def search
     @product = Product.find_by(number: params[:number])
-    unless @product.blank?
+    if @product.present?
       redirect_to product_path(@product)
+    else
+      redirect_back(fallback_location: root_path)
     end
   end
 
