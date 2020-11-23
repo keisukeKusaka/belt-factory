@@ -8,9 +8,8 @@
           .title__sub
             特注コンベアベルト 製品管理
       .btn-area.clearfix
-        = link_to "製品検索", root_path, class: "menu-btn btn header-btn"
         - if user_signed_in?
-          = link_to "製品一覧", lists_index_path, class: "menu-btn btn header-btn"
+          = link_to "製品一覧", root_path, class: "menu-btn btn header-btn"
           - if current_user.department_id == 2
             = link_to "新規登録", new_product_path, class: "menu-btn btn header-btn"
 
