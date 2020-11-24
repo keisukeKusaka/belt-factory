@@ -56,6 +56,7 @@ body {
           }
           .input-form {
             width: 150px;
+            border: black 1.5px solid;
           }
         }
         &__btn{
@@ -187,12 +188,7 @@ body {
       .size-input{
         width: 100px;
         text-align: right;
-      }
-      .size-output{
-        background-color: white;
         border: black 1.5px solid;
-        width: 80px;
-        text-align: right;
       }
       .weight{
         margin-left: 15px;
