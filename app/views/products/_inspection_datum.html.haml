@@ -6,13 +6,13 @@
       .comment-area
         .comment-area__size-area
           実寸法：
-          = form.text_field :length, class: "size-input", placeholder: "周長"
+          = form.text_field :length, class: "size-input", placeholder: "周長(必須)"
           m ×
-          = form.text_field :width, class: "size-input", placeholder: "横幅"
+          = form.text_field :width, class: "size-input", placeholder: "横幅(必須)"
           cm
-          = form.text_field :weight, class: "size-input weight", placeholder: "重量"
+          = form.text_field :weight, class: "size-input weight", placeholder: "重量(必須)"
           kg
-        = form.text_area :comment, class: "comment-area__main-area", placeholder: "コメントを記入してください（必須）"
+        = form.text_area :comment, class: "comment-area__main-area", placeholder: "コメントを記入してください(必須)"
         .comment-area__image-area#comment-area__image-area--inspection#image-area--inspection.clearfix
         %label{for: "inspection_datum_inspection_images_attributes_0_image", class: "btn image-btn", id: "image-btn--inspection", "data-datum" => "inspection"}
           画像を挿入
@@ -24,14 +24,14 @@
       .comment-area#comment-area--inspection
         .comment-area__size-area
           実寸法：
-          = form.text_field :length, class: "size-input size-input--edit", placeholder: "周長", id: "size-input--length"
+          = form.text_field :length, class: "size-input size-input--edit", placeholder: "周長(必須)", id: "size-input--length"
           m ×
-          = form.text_field :width, class: "size-input size-input--edit", placeholder: "横幅", id: "size-input--width"
+          = form.text_field :width, class: "size-input size-input--edit", placeholder: "横幅(必須)", id: "size-input--width"
           cm
-          = form.text_field :weight, class: "size-input size-input--edit weight", placeholder: "重量", id: "size-input--weight"
+          = form.text_field :weight, class: "size-input size-input--edit weight", placeholder: "重量(必須)", id: "size-input--weight"
           kg
 
-        = form.text_area :comment, class: "comment-area__main-area comment-area__main-area--edit", id: "comment-area__main-area--inspection"
+        = form.text_area :comment, class: "comment-area__main-area comment-area__main-area--edit", id: "comment-area__main-area--inspection", placeholder: "コメントを記入してください(必須)"
 
         .comment-area__image-area#comment-area__image-area--inspection#image-area--inspection.clearfix
           - @inspection_datum.inspection_images.each_with_index do |inspection_image, index|
