@@ -17,8 +17,12 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.save
-    redirect_to new_product_path
+    if @product.save
+      redirect_to product_path(@product)
+    else
       #失敗時にエラーメッセージを表示するよう設定する事
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def search
