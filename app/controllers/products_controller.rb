@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit]
 
   def index
+    @products = Product.includes(:production_datum, :inspection_datum, :evaluation_datum, :material, :client).order("id DESC").page(params[:page]).per(10)
   end
 
   def new
@@ -16,14 +17,20 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.save
-    redirect_to new_product_path
+    if @product.save
+      redirect_to product_path(@product)
+    else
       #失敗時にエラーメッセージを表示するよう設定する事
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def search
     @product = Product.find_by(number: params[:number])
-    unless @product.blank?
+    if @product.present?
       redirect_to product_path(@product)
+    else
+      redirect_back(fallback_location: root_path)
     end
   end
 

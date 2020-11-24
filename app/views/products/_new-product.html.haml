@@ -15,9 +15,9 @@
       .info-size.clearfix
         設計寸法
         .info-size__size
-          = form.text_field :length, class: "input"
+          = form.text_field :length, class: "input", placeholder: "周長(必須)"
           m ✖️
-          = form.text_field :width, class: "input"
+          = form.text_field :width, class: "input", placeholder: "横幅(必須)"
           cm
         .info-size__weight
           %input#calculation-weight.info__output{type: "text",readonly: "readonly"}

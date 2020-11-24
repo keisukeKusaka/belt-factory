@@ -27,7 +27,7 @@ class User < ApplicationRecord
 
   def self.production_guest
     find_or_create_by!(number: "990001") do |user|
-      user.name = "テストユーザー（製造部員）"
+      user.name = "テストユーザー(製造)"
       user.department_id = 1
       user.password = SecureRandom.urlsafe_base64
     end
@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
   def self.sales_guest
     find_or_create_by!(number: "990002") do |user|
-      user.name = "テストユーザー（営業部員）"
+      user.name = "テストユーザー(営業)"
       user.department_id = 2
       user.password = SecureRandom.urlsafe_base64
     end
