@@ -48,7 +48,7 @@ class ProductsController < ApplicationController
 
   def edit
     if @product.production_datum.present?
-      flash[:alert] = "#{product.number}は制作工程が完了しているため設計を変更できません。"
+      flash[:alert] = "#{@product.number}は製作工程が完了しているため設計を変更できません。"
       redirect_to product_path(@product)
     end
   end
@@ -56,7 +56,7 @@ class ProductsController < ApplicationController
   def update
     product = Product.find(params[:id])
     if product.production_datum.present?
-      flash[:alert] = "#{product.number}は制作工程が完了しているため設計を変更できません。"
+      flash[:alert] = "#{product.number}は製作工程が完了しているため設計を変更できません。"
       redirect_to product_path(product)
     else
       product.update(product_params)
@@ -73,7 +73,7 @@ class ProductsController < ApplicationController
   def destroy
     product = Product.find(params[:id])
     if product.production_datum.present?
-      flash[:alert] = "#{product.number}は制作工程が完了しているため削除できません。"
+      flash[:alert] = "#{product.number}は製作工程が完了しているため削除できません。"
       redirect_to product_path(product)
     else
       product.destroy
