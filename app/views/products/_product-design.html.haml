@@ -20,10 +20,8 @@
       kg
   - if user_signed_in? && current_user.department_id == 2 && @product.present?
     .edit-btn.clearfix
-      -if @product&.production_datum == nil
-        = link_to "設計変更", edit_product_path(@product), class: 'btn'
-      - else
-        = link_to "設計変更", "#", class: 'btn', disabled: "disabled"
+      = link_to "設計変更", edit_product_path(@product), class: 'btn'
+      -if @product.production_datum.present?
         .comment
           ※製作済みのため
           %br
