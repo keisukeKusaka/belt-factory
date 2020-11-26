@@ -4,9 +4,10 @@ class EvaluationDataController < ApplicationController
   def create
     @evaluation_datum_new = EvaluationDatum.create(evaluation_datum_params)
     if @evaluation_datum_new.save
+      flash[:notice] = "#{@evaluation_datum.product.number} 顧客評価の登録が完了しました。"
       redirect_to product_path(params[:product_id])
     else
-      #失敗時にエラーメッセージを表示するよう設定する事
+      flash[:alert] = "#{@evaluation_datum.product.number} 顧客評価の登録に失敗しました。全ての必須項目を入力してください。"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -15,9 +16,10 @@ class EvaluationDataController < ApplicationController
     @evaluation_datum = EvaluationDatum.find(params[:id])
     @evaluation_datum.update(evaluation_datum_params)
     if @evaluation_datum.update(evaluation_datum_params)
+      flash[:notice] = "#{@evaluation_datum.product.number} 顧客評価の変更が完了しました。"
       redirect_to product_path(params[:product_id])
     else
-      #失敗時にエラーメッセージを表示するよう設定する事
+      flash[:alert] = "#{@evaluation_datum.product.number} 顧客評価の変更に失敗しました。全ての必須項目を入力してください。"
       redirect_back(fallback_location: root_path)
     end
   end
