@@ -18,9 +18,10 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.save
     if @product.save
+      flash[:notice] = "#{@product.number}の登録が完了しました。"
       redirect_to product_path(@product)
     else
-      #失敗時にエラーメッセージを表示するよう設定する事
+      flash[:alert] = "#{@product.number}の登録に失敗しました。全ての必須項目を入力してください。"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -30,6 +31,7 @@ class ProductsController < ApplicationController
     if @product.present?
       redirect_to product_path(@product)
     else
+      flash[:alert] = "検索に失敗しました。登録済みの製品番号を入力してください。"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -46,6 +48,7 @@ class ProductsController < ApplicationController
 
   def edit
     if @product.production_datum.present?
+      flash[:alert] = "#{@product.number}は製作工程が完了しているため設計を変更できません。"
       redirect_to product_path(@product)
     end
   end
@@ -53,20 +56,35 @@ class ProductsController < ApplicationController
   def update
     product = Product.find(params[:id])
     if product.production_datum.present?
+      flash[:alert] = "#{product.number}は製作工程が完了しているため設計を変更できません。"
       redirect_to product_path(product)
     else
       product.update(product_params)
-      redirect_to product_path(product)
+      if product.update(product_params)
+        flash[:notice] = "#{product.number}の設計変更が完了しました。"
+        redirect_to product_path(product)
+      else
+        flash[:alert] = "#{@product.number}の設計変更に失敗しました。全ての必須項目を入力してください。"
+        redirect_back(fallback_location: root_path)
+      end
     end
   end
 
   def destroy
     product = Product.find(params[:id])
     if product.production_datum.present?
+      flash[:alert] = "#{product.number}は製作工程が完了しているため削除できません。"
       redirect_to product_path(product)
     else
       product.destroy
-      redirect_to root_path
+      if product.destroy
+        flash[:delete] = "#{product.number}を削除しました。"
+        redirect_to root_path
+      else
+        flash[:alert] = "#{@product.number}の削除に失敗しました。"
+        redirect_back(fallback_location: root_path)
+      end
+
     end
   end
 
