@@ -1,0 +1,37 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: belt1231
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: belt1231
+      MYSQL_DATABASE: belt_factory
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  app:
+    build: .
+    command: bundle exec puma -C config/puma.rb
+    volumes:
+      - .:/belt-factory
+      - public-data:/belt-factory/public
+      - tmp-data:/belt-factory/tmp
+      - log-data:/belt-factory/log
+
+  web:
+    build:
+      context: containers/nginx
+    volumes:
+      - public-data:/belt-factory/public
+      - tmp-data:/belt-factory/tmp
+    ports:
+      - 80:80
+
+volumes:
+  mysql-data:
+  public-data:
+  tmp-data:
+  log-data:
