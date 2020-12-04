@@ -3,14 +3,14 @@ services:
   db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: belt1231
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: belt1231
-      MYSQL_DATABASE: belt_factory
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: belt-factory_development
     volumes:
       - mysql-data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3316:3306"
 
   app:
     build: .
