@@ -12,21 +12,21 @@
 
 ActiveRecord::Schema.define(version: 2020_10_30_075211) do
 
-  create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "campany", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["campany"], name: "index_clients_on_campany", unique: true
   end
 
-  create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_departments_on_name"
   end
 
-  create_table "evaluation_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "evaluation_data", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "comment", null: false
     t.bigint "product_id"
     t.bigint "user_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_075211) do
     t.index ["user_id"], name: "index_evaluation_data_on_user_id"
   end
 
-  create_table "evaluation_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "evaluation_images", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "image", null: false
     t.bigint "evaluation_datum_id"
     t.datetime "created_at", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_075211) do
     t.index ["evaluation_datum_id"], name: "index_evaluation_images_on_evaluation_datum_id"
   end
 
-  create_table "inspection_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "inspection_data", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.float "length", null: false
     t.integer "width", null: false
     t.float "weight", null: false
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_075211) do
     t.index ["user_id"], name: "index_inspection_data_on_user_id"
   end
 
-  create_table "inspection_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "inspection_images", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "image", null: false
     t.bigint "inspection_datum_id"
     t.datetime "created_at", null: false
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_075211) do
     t.index ["inspection_datum_id"], name: "index_inspection_images_on_inspection_datum_id"
   end
 
-  create_table "materials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "materials", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", null: false
     t.float "basis_weight", null: false
     t.datetime "created_at", null: false
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_075211) do
     t.index ["name"], name: "index_materials_on_name", unique: true
   end
 
-  create_table "production_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "production_data", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "comment", null: false
     t.bigint "product_id"
     t.bigint "user_id"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_075211) do
     t.index ["user_id"], name: "index_production_data_on_user_id"
   end
 
-  create_table "production_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "production_images", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "image", null: false
     t.bigint "production_datum_id"
     t.datetime "created_at", null: false
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_075211) do
     t.index ["production_datum_id"], name: "index_production_images_on_production_datum_id"
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "number", null: false
     t.float "length", null: false
     t.integer "width", null: false
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_075211) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", null: false
     t.string "number", null: false
     t.string "encrypted_password", null: false
