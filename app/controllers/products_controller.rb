@@ -76,7 +76,6 @@ class ProductsController < ApplicationController
       flash[:alert] = "#{product.number}は製作工程が完了しているため削除できません。"
       redirect_to product_path(product)
     else
-      product.destroy
       if product.destroy
         flash[:delete] = "#{product.number}を削除しました。"
         redirect_to root_path

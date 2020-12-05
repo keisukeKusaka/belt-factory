@@ -14,7 +14,6 @@ class EvaluationDataController < ApplicationController
 
   def update
     @evaluation_datum = EvaluationDatum.find(params[:id])
-    @evaluation_datum.update(evaluation_datum_params)
     if @evaluation_datum.update(evaluation_datum_params)
       flash[:notice] = "#{@evaluation_datum.product.number} 顧客評価の変更が完了しました。"
       redirect_to product_path(params[:product_id])

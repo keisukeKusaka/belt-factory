@@ -14,7 +14,6 @@ class InspectionDataController < ApplicationController
 
   def update
     @inspection_datum = InspectionDatum.find(params[:id])
-    @inspection_datum.update(inspection_datum_params)
     if @inspection_datum.update(inspection_datum_params)
       flash[:notice] = "#{@inspection_datum.product.number} 検査工程の変更が完了しました。"
       redirect_to product_path(params[:product_id])
