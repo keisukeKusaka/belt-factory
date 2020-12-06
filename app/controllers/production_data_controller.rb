@@ -14,7 +14,6 @@ class ProductionDataController < ApplicationController
 
   def update
     @production_datum = ProductionDatum.find(params[:id])
-    @production_datum.update(production_datum_params)
     if @production_datum.update(production_datum_params)
       flash[:notice] = "#{@production_datum.product.number} 製作工程の変更が完了しました。"
       redirect_to product_path(params[:product_id])
