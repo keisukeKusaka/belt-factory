@@ -20,6 +20,7 @@ services:
       - public-data:/belt-factory/public
       - tmp-data:/belt-factory/tmp
       - log-data:/belt-factory/log
+    tty: true
 
   web:
     build:

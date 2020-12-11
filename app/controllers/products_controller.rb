@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
       redirect_to product_path(@product)
     else
       flash[:alert] = "#{@product.number}の登録に失敗しました。全ての必須項目を入力してください。"
-      redirect_back(fallback_location: root_path)
+      redirect_to new_product_path
     end
   end
 

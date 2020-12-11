@@ -88,8 +88,8 @@ describe ProductsController do
         get :search, params: { number: nil }
       end
 
-      it 'search_products_pathへリダイレクトする' do
-        expect(response).to render_template :search
+      it '現在のページ（root_path）へリダイレクトする' do
+        expect(response).to redirect_to(root_path)
       end
     end
   end
