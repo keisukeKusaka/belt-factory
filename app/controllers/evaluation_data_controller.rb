@@ -8,7 +8,7 @@ class EvaluationDataController < ApplicationController
       redirect_to product_path(params[:product_id])
     else
       flash[:alert] = "#{@evaluation_datum.product.number} 顧客評価の登録に失敗しました。全ての必須項目を入力してください。"
-      redirect_back(fallback_location: root_path)
+      redirect_to product_path(params[:product_id])
     end
   end
 
@@ -19,7 +19,7 @@ class EvaluationDataController < ApplicationController
       redirect_to product_path(params[:product_id])
     else
       flash[:alert] = "#{@evaluation_datum.product.number} 顧客評価の変更に失敗しました。全ての必須項目を入力してください。"
-      redirect_back(fallback_location: root_path)
+      redirect_to product_path(params[:product_id])
     end
   end
 
