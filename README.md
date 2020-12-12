@@ -62,7 +62,7 @@ Docker/docker-compose<br>
 Capistrano<br>
 Nginx<br>
 Unicorn<br>
-![インフラ構成図](https://user-images.githubusercontent.com/65844843/101970102-bfaec000-3c6b-11eb-9dbe-5d042d1b7e03.png)
+![インフラ構成図](https://user-images.githubusercontent.com/65844843/101987089-52d01000-3cd5-11eb-8601-6fe7cfacddb6.png)
 #### テスト
 RSpec<br>
 FactoryBot<br>
