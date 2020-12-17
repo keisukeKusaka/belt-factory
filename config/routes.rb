@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :products do
     collection do
       get "search"
+      get "filter"
     end
     resources :production_data, only: [:create, :update]
     resources :inspection_data, only: [:create, :update]
