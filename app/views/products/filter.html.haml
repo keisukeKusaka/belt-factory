@@ -6,4 +6,70 @@
       = render "product-design"
 
   .main-content
-    = render "main-list"
+    .main-list
+      製品一覧（社名：
+      = @client_name
+      ／材質：
+      = @material_name
+      ）
+      .filter.clearfix
+        = form_with(url: filter_products_path, local: true, method: :get) do |form|
+          社名
+          = form.select :client_id, options_for_select(@client.map{|client|[client[:campany], client[:id], {}]}, ""), {include_blank: true}, {class: "info__input", id: "campany"}
+          材質
+          = form.select :material_id, options_for_select(@material.map{|material|[material[:name], material[:id], {}]}, ""), {include_blank: true}, {class: "info__input"}
+          = form.submit "絞り込み表示", class: "btn"
+        = link_to "全て表示", root_path, class: "btn"
+
+
+      %table.table.table-striped
+        %thead
+          %tr
+            %th
+              製品番号
+            %th
+              社名
+            %th
+              材質
+            %th
+              周長
+            %th
+              幅
+            %th
+              重量
+            %th
+              制作工程
+            %th
+              検査工程
+            %th
+              顧客評価
+        %tbody
+          - @products.each do |product|
+            %tr.product{data_link: product_path(product)}
+              %td
+                .number
+                  = product.number
+              %td
+                = product.client.campany
+              %td
+                = product.material.name
+              %td
+                = product.length
+                m
+              %td
+                = product.width
+                cm
+              %td
+                = weight(product)
+                kg
+              %td
+                - if product.production_datum.present?
+                  = product.production_datum.updated_at.strftime("%Y/%m/%d")
+              %td
+                - if product.inspection_datum.present?
+                  = product.inspection_datum.updated_at.strftime("%Y/%m/%d")
+              %td
+                - if product.evaluation_datum.present?
+                  = product.evaluation_datum.updated_at.strftime("%Y/%m/%d")
+      .paginate
+        = paginate(@products)
