@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   include ApplicationHelper
   load_and_authorize_resource
   before_action :new_action_only_sales, only: [:new, :edit]
-  before_action :get_parameters, only: [:new, :edit]
+  before_action :get_parameters, only: [:new, :edit, :index, :filter]
   before_action :find_product, only: [:show, :edit]
 
   def index
@@ -34,6 +34,10 @@ class ProductsController < ApplicationController
       flash[:alert] = "検索に失敗しました。登録済みの製品番号を入力してください。"
       redirect_back(fallback_location: root_path)
     end
+  end
+
+  def filter
+    material_client_present?(params)
   end
 
   def show
@@ -83,7 +87,6 @@ class ProductsController < ApplicationController
         flash[:alert] = "#{@product.number}の削除に失敗しました。"
         redirect_back(fallback_location: root_path)
       end
-
     end
   end
 

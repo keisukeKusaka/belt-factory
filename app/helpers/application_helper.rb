@@ -24,4 +24,17 @@ module ApplicationHelper
       "#{weight}"
     end
   end
+
+  def material_client_present?(params)
+    if params[:material_id].present? && params[:client_id].present?
+      @products = Product.where(material_id: params[:material_id]).where(client_id: params[:client_id]).order("id DESC").page(params[:page]).per(10)
+    elsif params[:material_id].blank? && params[:client_id].present?
+      @products = Product.where(client_id: params[:client_id]).order("id DESC").page(params[:page]).per(10)
+    elsif  params[:material_id].present? && params[:client_id].blank?
+      @products = Product.where(material_id: params[:material_id]).order("id DESC").page(params[:page]).per(10)
+    else
+      redirect_to root_path
+    end
+  end
+
 end
