@@ -94,6 +94,60 @@ describe ProductsController do
     end
   end
 
+  describe "#filter" do
+    context 'clientとmaterialの両方を指定した場合' do
+      before do
+        get :filter, params: { client_id: client.id, material_id: material.id }
+      end
+
+      it '@productsに期待される文字列が代入されている' do
+        expect(assigns(:products)).to eq Product.where(material_id: material.id).where(client_id: client.id).reverse
+      end
+
+      it 'filter_products_pathへ遷移する' do
+        expect(response).to render_template :filter
+      end
+    end
+
+    context 'clientのみ指定した場合' do
+      before do
+        get :filter, params: { client_id: client.id, material_id: nil }
+      end
+
+      it '@productsに期待される文字列が代入されている' do
+        expect(assigns(:products)).to eq Product.where(client_id: client.id).reverse
+      end
+
+      it 'filter_products_pathへ遷移する' do
+        expect(response).to render_template :filter
+      end
+    end
+
+    context 'materialのみ指定した場合' do
+      before do
+        get :filter, params: { client_id: nil, material_id: material.id }
+      end
+
+      it '@productsに期待される文字列が代入されている' do
+        expect(assigns(:products)).to eq Product.where(client_id: client.id).reverse
+      end
+
+      it 'filter_products_pathへ遷移する' do
+        expect(response).to render_template :filter
+      end
+    end
+
+    context 'clientとmaterialのどちらも空欄の場合' do
+      before do
+        get :filter, params: { client_id: nil, material_id: nil }
+      end
+
+      it 'root_pathに遷移する' do
+        expect(response).to redirect_to root_path
+      end
+    end
+  end
+
   describe "#show" do
     subject {
       get :show, params: { id: product.id }

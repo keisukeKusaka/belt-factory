@@ -7,14 +7,20 @@
 
   .main-content
     .main-list
-      製品一覧
-      .filter
+      製品一覧（社名：
+      = @client_name
+      ／材質：
+      = @material_name
+      ）
+      .filter.clearfix
         = form_with(url: filter_products_path, local: true, method: :get) do |form|
           社名
           = form.select :client_id, options_for_select(@client.map{|client|[client[:campany], client[:id], {}]}, ""), {include_blank: true}, {class: "info__input", id: "campany"}
           材質
           = form.select :material_id, options_for_select(@material.map{|material|[material[:name], material[:id], {}]}, ""), {include_blank: true}, {class: "info__input"}
           = form.submit "絞り込み表示", class: "btn"
+        = link_to "全て表示", root_path, class: "btn"
+
 
       %table.table.table-striped
         %thead
@@ -67,4 +73,3 @@
                   = product.evaluation_datum.updated_at.strftime("%Y/%m/%d")
       .paginate
         = paginate(@products)
-

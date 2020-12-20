@@ -6,6 +6,7 @@ class Ability
   def initialize(user)
     can :read, :all
     can :search, :all
+    can :filter, :all
 
     if user.department_id == 1
       can [:create, :update, :destroy], [ProductionDatum, InspectionDatum]
