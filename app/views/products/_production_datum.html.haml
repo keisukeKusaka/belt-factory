@@ -2,7 +2,7 @@
   .title
     製作工程
   - if append_datum_form?(1, @production_datum.id)
-    = form_with(model: [@product, @production_datum_new], local: true) do |form|
+    = form_with(model: [@product, @production_datum_new], local: true, class: "datum_form", data: {datum: "production"}) do |form|
       .comment-area
         = form.text_area :comment, class: "comment-area__main-area", placeholder: "コメントを記入してください(必須)"
         .comment-area__image-area#comment-area__image-area--production#image-area--production.clearfix
@@ -13,7 +13,7 @@
           = form.submit "確定", class: "btn submit-btn"
 
   - else
-    = form_with(model: [@product, @production_datum], local: true) do |form|
+    = form_with(model: [@product, @production_datum], local: true, class: "datum_form", data: {datum: "production"}) do |form|
       .comment-area#comment-area--production
         = form.text_area :comment, class: "comment-area__main-area comment-area__main-area--edit", id: "comment-area__main-area--production", placeholder: "コメントを記入してください(必須)"
 
